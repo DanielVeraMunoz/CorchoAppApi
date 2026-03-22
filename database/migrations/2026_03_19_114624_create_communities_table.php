@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('address');
             $table->string('postal_code');
            
-
             $table->timestamps();
         });
     }
