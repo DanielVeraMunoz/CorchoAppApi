@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
                 $table->foreignId('note_id')->constrained()->onDelete('cascade');
-                $table->foreignId('giver_id')->constrained()->onDelete('cascade');
+                $table->foreignId('giver_id')->constrained('users')->onDelete('cascade');
 
                 $table->foreignId('recipient_id')->constrained('users')->onDelete('cascade');
 

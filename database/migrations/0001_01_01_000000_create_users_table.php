@@ -20,6 +20,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            $table->string('door');
+            $table->string('floor');
+
+            $table->enum('role', ['user', 'admin'])->default('user');
+
             $table->foreignId('community_id')->constrained()->onDelete('cascade');
 
 
