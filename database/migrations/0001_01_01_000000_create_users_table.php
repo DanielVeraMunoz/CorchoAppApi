@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreignId('community_id')->constrained()->onDelete('cascade');
+
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
