@@ -31,7 +31,7 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api/register', $data);
 
 
-        $response->asserStatus(201);
+        $response->assertStatus(201);
         $this->assertDatabaseHas('users', ['email' => 'test@example.com']);
     }
 }
