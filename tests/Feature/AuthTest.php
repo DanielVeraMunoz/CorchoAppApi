@@ -9,13 +9,29 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    public function test_user_can_register(): void
+    {
+
+        $community = Community::factory()->create();
+
+
+        $data = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
+            'community_id' => $community->id,
+            'floor' => '2',
+            'door' => 'A',
+        ];
+
+
+        $response = $this->postJson('/api/register', $data);
+
+
+        $response->asserStatus(201);
+        $this->assertDatabaseHas('users', ['email' => 'test@example.com']);
     }
 }
