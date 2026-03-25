@@ -22,7 +22,7 @@ class AuthTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password123',
             'password_confirmation' => 'password123',
-            'community_id' => $community->id,
+            'community_id' => ($community->id),
             'floor' => '2',
             'door' => 'A',
         ];

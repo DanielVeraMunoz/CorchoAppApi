@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
             'name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'community_id' => ['required', 'exists:communities, id'],
+            'community_id' => ['required', 'exists:communities,id'],
             'floor' => ['required', 'string'],
             'door' => ['required', 'string'],
         ];

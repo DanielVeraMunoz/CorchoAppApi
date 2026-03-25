@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 
 class AuthController extends Controller
 {
     
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
 
         $user = User::create([
