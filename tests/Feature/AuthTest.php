@@ -6,6 +6,7 @@ use App\Models\Community;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class AuthTest extends TestCase
 {
@@ -17,7 +18,7 @@ class AuthTest extends TestCase
         $community = Community::factory()->create();
 
         $data = [
-            'name' => 'Test User',
+            'name' => 'Test Register',
             'email' => 'test@example.com',
             'password' => 'password123',
             'password_confirmation' => 'password123',
@@ -40,6 +41,37 @@ class AuthTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('users', ['email' => 'test@example.com']);
+    }
+
+    public function test_user_can_login(): void
+    {
+        //Arrange
+        $community = Community::factory()->create();
+
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+            'community_id' => $community->id
+        ]);
+
+        //Act
+
+        $response = $this->postJson('/api/login',[
+            'email' => 'test@example.com',
+            'password' => 'password123',
+        ]);
+
+        //Assert
+
+        $response->assertStatus(200);
+
+        $response->assertJsonStructure([
+            'message',
+            'date' => ['id', 'name', 'email'],
+            'acces_token',
+            'token_type',
+        ]);
+
 
     }
 }
