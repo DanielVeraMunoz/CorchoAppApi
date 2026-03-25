@@ -16,13 +16,12 @@ class AuthTest extends TestCase
 
         $community = Community::factory()->create();
 
-
         $data = [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password123',
             'password_confirmation' => 'password123',
-            'community_id' => ($community->id),
+            'community_id' => $community->id,
             'floor' => '2',
             'door' => 'A',
         ];
@@ -32,6 +31,15 @@ class AuthTest extends TestCase
 
 
         $response->assertStatus(201);
+
+        $response->assertJsonStructure([
+            'message',
+            'data' => ['id', 'name', 'email'],
+            'access_token',
+            'token_type',
+        ]);
+
         $this->assertDatabaseHas('users', ['email' => 'test@example.com']);
+
     }
 }
