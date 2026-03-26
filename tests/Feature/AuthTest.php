@@ -46,6 +46,7 @@ class AuthTest extends TestCase
     public function test_user_can_login(): void
     {
         //Arrange
+        
         $community = Community::factory()->create();
 
         $user = User::factory()->create([
@@ -67,8 +68,8 @@ class AuthTest extends TestCase
 
         $response->assertJsonStructure([
             'message',
-            'date' => ['id', 'name', 'email'],
-            'acces_token',
+            'data' => ['id', 'name', 'email'],
+            'access_token',
             'token_type',
         ]);
 
