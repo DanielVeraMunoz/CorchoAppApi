@@ -75,4 +75,27 @@ class AuthTest extends TestCase
 
 
     }
+
+    public function test_user_can_logout(): void{
+        //Arrange
+
+        $community = Community::factory()->create();
+
+        $user = User::factory()->create([
+            'community_id' => $community->id
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        //Act
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->deleteJson('/api/logout');
+
+        //Assert
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Logout correcto',
+        ]);
+    }
 }
