@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Community;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,6 +31,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+
+            'community_id' => \App\Models\Community::factory(),
+            'floor' => fake()->numberBetween(1, 10),
+            'door' => fake()->numberBetween(1, 10),
+            'role'=> 'user',
         ];
     }
 
