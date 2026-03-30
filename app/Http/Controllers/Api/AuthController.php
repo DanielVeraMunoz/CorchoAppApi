@@ -50,7 +50,7 @@ class AuthController extends Controller
         }
 
 
-        $token = $user->createToken('auth_token')->accesToken;
+        $token = $user->createToken('auth_token')->accessToken;
 
         return response()->json([
             'message' => 'Login correcto',
