@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNoteRequest;
 use Illuminate\Http\Request;
 use App\Models\Note;
 
 class Notecontroller extends Controller
 {
-    public function store(Request $request){
+    public function store(StoreNoteRequest $request){
 
         $note = Note::create([
             'user_id' => $request->user()->id,
