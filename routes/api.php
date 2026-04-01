@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\NoteController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +15,5 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+
+Route::post('/notes', [NoteController::class, 'store'])->middleware('auth:api');
