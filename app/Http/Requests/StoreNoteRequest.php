@@ -26,7 +26,7 @@ class StoreNoteRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'category_id' => ['required', 'exists:categories,id'],
-            'event_date' => ['required', 'date'],
+            'event_date' => ['nullable', 'date'],
         ];
     }
 }
