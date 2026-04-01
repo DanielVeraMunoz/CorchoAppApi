@@ -15,7 +15,7 @@ class Note extends Model
         'category_id',
         'title',
         'description',
-        'even_date',
+        'event_date',
         'is_completed',
     ];
 
