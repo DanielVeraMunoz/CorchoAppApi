@@ -17,3 +17,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 Route::post('/notes', [NoteController::class, 'store'])->middleware('auth:api');
+
+Route::get('/notes', [NoteController::class, 'index'])->middleware('auth:api');
