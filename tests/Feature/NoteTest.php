@@ -108,4 +108,38 @@ class NoteTest extends TestCase
             ]
         ]);
     }
+
+    public function test_authenticated_user_can_update_note(){
+
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+
+        $note = Note::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'title' => 'Título original :)'
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $newData = [
+            'title' => 'Titulo cambiado :D',
+            'description' => 'Descripción modificada',
+            'category_id' => $category->id,
+        ];
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/notes/' . $note->id, $newData);
+
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('notes', [
+            'id' => $note->id,
+            'title' => 'Título cambiado :D',
+        ]);
+
+    }
 }
