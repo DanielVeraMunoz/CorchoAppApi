@@ -56,7 +56,8 @@ class NoteTest extends TestCase
         ]);
     }
 
-    public function test_authenticated_user_can_list_notes(){
+    public function test_authenticated_user_can_list_notes()
+    {
 
 
         $community = Community::factory()->create();
@@ -77,6 +78,34 @@ class NoteTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
+    }
 
+
+    public function test_authenticated_user_can_view_note()
+    {
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+
+        $note = Note::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/notes/' . $note->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Nota obtenida correctamente',
+            'data' => [
+                'id' => $note->id,
+                'title' => $note->title,
+            ]
+        ]);
     }
 }
