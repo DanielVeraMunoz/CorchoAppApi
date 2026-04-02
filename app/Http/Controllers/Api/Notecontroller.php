@@ -14,7 +14,6 @@ class Notecontroller extends Controller
 
         $note = Note::create([
             'user_id' => $request->user()->id,
-            'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
@@ -54,5 +53,31 @@ class Notecontroller extends Controller
         ], 200);
 
     }
+
+    public function update(Request $request, $id){
+        $note = Note::find($id);
+
+        if (!$note){
+            return response()->json([
+                'message' => 'Nota no encontrada'],
+                404);
+        }
+
+        if ($note->user_id !== $request->user()->id){
+            return response()->json([
+                'message' => 'No autorizado'],
+                403);
+        }
+
+        $note->update([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        return response()->json([
+            'message' => 'Nota actualizada correctamente',
+            'data' => $note,
+        ], 200);
+    }   
 
 }

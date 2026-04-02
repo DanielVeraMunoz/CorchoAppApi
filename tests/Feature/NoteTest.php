@@ -109,7 +109,7 @@ class NoteTest extends TestCase
         ]);
     }
 
-    public function test_authenticated_user_can_update_note(){
+    public function test_authenticated_user_can_update_own_note(){
 
         $community = Community::factory()->create();
         $user = User::factory()->create(['community_id' => $community->id]);
