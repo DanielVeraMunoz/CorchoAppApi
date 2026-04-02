@@ -124,7 +124,7 @@ class NoteTest extends TestCase
         $token = $user->createToken('auth_token')->accessToken;
 
         $newData = [
-            'title' => 'Titulo cambiado :D',
+            'title' => 'Título cambiado :D',
             'description' => 'Descripción modificada',
             'category_id' => $category->id,
         ];

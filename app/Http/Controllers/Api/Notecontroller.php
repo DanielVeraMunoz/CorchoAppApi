@@ -71,7 +71,8 @@ class Notecontroller extends Controller
 
         $note->update([
             'title' => $request->title,
-            'description' => $request->description
+            'description' => $request->description,
+            'category_id' => $request->category_id,
         ]);
 
         return response()->json([
