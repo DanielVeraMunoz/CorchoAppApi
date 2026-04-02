@@ -9,7 +9,8 @@ use App\Models\Note;
 
 class Notecontroller extends Controller
 {
-    public function store(StoreNoteRequest $request){
+    public function store(StoreNoteRequest $request)
+    {
 
         $note = Note::create([
             'user_id' => $request->user()->id,
@@ -25,7 +26,17 @@ class Notecontroller extends Controller
             'message' => 'Nota creada correctamente',
             'data' => $note,
         ], 201);
-
-
     }
+
+
+    public function index(Request $request)
+    {
+        $notes = Note::where('user_id', $request->user()->id)->get();
+
+        return response()->json([
+            'message' => 'Notas obtenidas correctamente',
+            'data' => $notes,
+        ], 200);
+    }
+
 }
