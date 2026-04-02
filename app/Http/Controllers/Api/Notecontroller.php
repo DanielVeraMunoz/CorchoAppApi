@@ -39,4 +39,20 @@ class Notecontroller extends Controller
         ], 200);
     }
 
+    public function show(Request $request, $id){
+        $note = Note::find($id);
+
+        if (!$note){
+            return response()->json([
+                'message' => 'Nota no encontrada'],
+                404);
+        }
+
+        return response()->json([
+            'message' => 'Nota obtenida correctamente',
+            'data' => $note,
+        ], 200);
+
+    }
+
 }
