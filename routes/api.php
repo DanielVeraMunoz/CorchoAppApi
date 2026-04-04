@@ -23,3 +23,5 @@ Route::get('/notes', [NoteController::class, 'index'])->middleware('auth:api');
 Route::get('/notes/{id}', [NoteController::class, 'show'])->middleware('auth:api');
 
 Route::put('/notes/{id}', [NoteController::class, 'update'])->middleware('auth:api');
+
+Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('auth:api');
