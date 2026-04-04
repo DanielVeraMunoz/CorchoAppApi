@@ -142,4 +142,29 @@ class NoteTest extends TestCase
         ]);
 
     }
+
+        public function test_authenticated_user_can_delete_own_note()
+    {
+
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+
+        $note = Note::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/notes/' . $note->id);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('notes', [
+            'id' => $note->id,
+        ]);
+    }
 }
