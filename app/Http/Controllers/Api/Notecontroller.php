@@ -82,4 +82,26 @@ class Notecontroller extends Controller
         ], 200);
     }   
 
+    public function destroy(Request $request, $id){
+        $note = Note::find($id);
+
+        if (!$note){
+            return response()->json([
+                'message' => 'Nota no encontrada'],
+                404);
+        }
+
+        if ($note->user_id !== $request->user()->id){
+            return response()->json([
+                'message' => 'No autorizado'],
+                403);
+        }
+
+        $note->delete();
+
+        return response()->json([
+            'message' => 'Nota eliminada correctamente',
+        ], 200);
+    }
+
 }
