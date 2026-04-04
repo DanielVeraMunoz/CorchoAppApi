@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNoteRequest;
+use App\Http\Requests\UpdateNoteRequest;
 use Illuminate\Http\Request;
 use App\Models\Note;
 
@@ -54,7 +55,7 @@ class Notecontroller extends Controller
 
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateNoteRequest $request, $id){
         $note = Note::find($id);
 
         if (!$note){
