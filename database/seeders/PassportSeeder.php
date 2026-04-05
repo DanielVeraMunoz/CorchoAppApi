@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Seeders;
+
+use GuzzleHttp\Client;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class PassportSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('oauth_clients')->insert([
+            'id' => '1',
+            'name' => 'CorchoApp Personal Access Client',
+            'secret' => null,
+            'provider' => 'users',
+            'redirect_uris' => json_encode([]),
+            'grant_types' => json_encode(['personal_access']),
+            'revoked' => false,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+}

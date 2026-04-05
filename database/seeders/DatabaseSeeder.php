@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
    
         $this->call([
+            PassportSeeder::class,
             CommunitySeeder::class,
             CategorySeeder::class,
             UserSeeder::class,
