@@ -15,13 +15,12 @@ class PassportSeeder extends Seeder
     public function run(): void
     {
         DB::table('oauth_clients')->insert([
-            'id' => 1,
+            'id' => '1',
             'name' => 'CorchoApp Personal Access Client',
             'secret' => null,
             'provider' => 'users',
-            'redirect' => 'http://localhost',
-            'personal_access_client' => true,
-            'password_client' => false,
+            'redirect_uris' => json_encode([]),
+            'grant_types' => json_encode(['personal_access']),
             'revoked' => false,
             'created_at' => now(),
             'updated_at' => now(),
