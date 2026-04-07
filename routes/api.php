@@ -11,11 +11,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:api');
 
+//AUTH
+
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+
+//NOTES
 
 Route::post('/notes', [NoteController::class, 'store'])->middleware('auth:api');
 
@@ -27,8 +31,17 @@ Route::put('/notes/{id}', [NoteController::class, 'update'])->middleware('auth:a
 
 Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('auth:api');
 
+//COMMENTS
+
 Route::post('/notes/{id}/comments', [CommentController::class, 'store'])->middleware('auth:api');
 
 Route::get('/notes/{id}/comments', [CommentController::class, 'index'])->middleware('auth:api');
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->middleware('auth:api');
+
+Route::put('/comments/{id}', [CommentController::class, 'update'])->middleware('auth:api');
+
+
+//THANKS
+
+Route::post('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'store'])->middleware('auth:api');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -29,6 +30,31 @@ class CommentController extends Controller
         return response()->json([
             'message' => 'Comentarios obtenidos correctamente',
             'data' => $comments,
+        ], 200);
+    }
+
+    public function update(UpdateCommentRequest $request, $id){
+        $comment = Comment::find($id);
+
+        if (!$comment){
+            return response()->json([
+                'message' => 'Comentario no encontrado'],
+                404);
+        }
+
+        if ($comment->user_id != $request->user()->id){
+            return response()->json([
+                'message' => 'No tienes permiso para editar este comentario'],
+                403);
+        }
+
+        $comment->update([
+            'content' => $request->content,
+        ]);
+
+        return response()->json([
+            'message' => 'Comentario actualizado correctamente',
+            'data' => $comment,
         ], 200);
     }
 
