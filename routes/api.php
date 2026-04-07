@@ -39,6 +39,8 @@ Route::get('/notes/{id}/comments', [CommentController::class, 'index'])->middlew
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->middleware('auth:api');
 
+Route::put('/comments/{id}', [CommentController::class, 'update'])->middleware('auth:api');
+
 
 //THANKS
 
