@@ -32,3 +32,5 @@ Route::post('/notes/{id}/comments', [CommentController::class, 'store'])->middle
 Route::get('/notes/{id}/comments', [CommentController::class, 'index'])->middleware('auth:api');
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->middleware('auth:api');
+
+Route::post('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'store'])->middleware('auth:api');

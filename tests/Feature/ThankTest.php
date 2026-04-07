@@ -22,10 +22,11 @@ class ThankTest extends TestCase
             'Accept' => 'application/json',
         ])->postJson('/api/notes/' . $note->id . '/thanks');
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertDatabaseHas('thanks', [
             'note_id' => $note->id,
-            'user_id' => $user->id,
+            'giver_id' => $user->id,
+            'recipient_id' => $note->user_id,
         ]);
     }
 }
