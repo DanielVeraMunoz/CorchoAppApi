@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Comment;
 
 class CommentTest extends TestCase
 {
@@ -22,7 +23,7 @@ class CommentTest extends TestCase
 
     public function test_authenticated_user_can_create_comment()
     {
-    
+
         $user = \App\Models\User::factory()->create();
         $note = \App\Models\Note::factory()->create();
         $token = $user->createToken('auth_token')->accessToken;
@@ -42,6 +43,26 @@ class CommentTest extends TestCase
             'note_id' => $note->id,
             'user_id' => $user->id,
         ]);
+    }
 
+    public function test_authenticated_user_can_list_comments()
+    {
+
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        Comment::factory()->count(3)->create([
+            'note_id' => $note->id,
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/notes/' . $note->id . '/comments');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(3, 'data');
     }
 }
