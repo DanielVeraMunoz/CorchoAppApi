@@ -86,4 +86,30 @@ class CommentTest extends TestCase
             'id' => $comment->id,
         ]);
     }
+
+    public function test_authenticated_user_can_update_own_comment()
+    {
+
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $comment = Comment::factory()->create([
+            'note_id' => $note->id,
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/comments/' . $comment->id, [
+            'content' => 'Comentario actualizado',
+        ]);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('comments', [
+            'id' => $comment->id,
+            'content' => 'Comentario actualizado',
+        ]);
+    }
 }
