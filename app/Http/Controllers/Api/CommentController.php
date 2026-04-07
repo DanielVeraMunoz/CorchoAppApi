@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -32,7 +33,7 @@ class CommentController extends Controller
         ], 200);
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateCommentRequest $request, $id){
         $comment = Comment::find($id);
 
         if (!$comment){
