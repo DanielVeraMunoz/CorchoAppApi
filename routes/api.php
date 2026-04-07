@@ -28,3 +28,5 @@ Route::put('/notes/{id}', [NoteController::class, 'update'])->middleware('auth:a
 Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('auth:api');
 
 Route::post('/notes/{id}/comments', [CommentController::class, 'store'])->middleware('auth:api');
+
+Route::get('/notes/{id}/comments', [CommentController::class, 'index'])->middleware('auth:api');

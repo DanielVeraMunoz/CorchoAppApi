@@ -22,4 +22,13 @@ class CommentController extends Controller
             'data' => $comment,
         ], 201);
     }
+
+    public function index($noteId){
+        $comments = Comment::where('note_id', $noteId)->with('user')->get();
+
+        return response()->json([
+            'message' => 'Comentarios obtenidos correctamente',
+            'data' => $comments,
+        ], 200);
+    }
 }
