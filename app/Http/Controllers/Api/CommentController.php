@@ -31,4 +31,20 @@ class CommentController extends Controller
             'data' => $comments,
         ], 200);
     }
+
+    public function destroy($id){
+        $comment = Comment::find($id);
+
+        if (!$comment){
+            return response()->json([
+                'message' => 'Comentario no encontrado'],
+                404);
+        }
+
+        $comment->delete();
+
+        return response()->json([
+            'message' => 'Comentario eliminado correctamente',
+        ], 200);
+    }
 }

@@ -65,4 +65,27 @@ class CommentTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
     }
+
+    public function test_authenticated_user_can_delete_own_comment()
+    {
+
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $comment = Comment::factory()->create([
+            'note_id' => $note->id,
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/comments/' . $comment->id);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('comments', [
+            'id' => $comment->id,
+        ]);
+    }
 }
