@@ -20,4 +20,13 @@ class ThankController extends Controller
             'data' => $thanks,
         ], 201);
     }
+
+    public function index(Request $request, $noteId){
+        $thanks = \App\Models\Thank::where('note_id', $noteId)->with('giver')->get();
+
+        return response()->json([
+            'message' => 'Gracias obtenidas correctamente',
+            'data' => $thanks,
+        ], 200);
+    }
 }
