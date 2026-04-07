@@ -28,8 +28,6 @@ class CommentTest extends TestCase
         $note = \App\Models\Note::factory()->create();
         $token = $user->createToken('auth_token')->accessToken;
 
-        $this->withoutExceptionHandling();
-
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
