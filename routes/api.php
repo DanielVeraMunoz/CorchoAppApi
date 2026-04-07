@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NoteController;
+use App\Http\Controllers\Api\CommentController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,4 @@ Route::put('/notes/{id}', [NoteController::class, 'update'])->middleware('auth:a
 
 Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('auth:api');
 
-Route::post('/notes/{note}/comments', [NoteController::class, 'addComment'])->middleware('auth:api');
+Route::post('/notes/{id}/comments', [CommentController::class, 'store'])->middleware('auth:api');

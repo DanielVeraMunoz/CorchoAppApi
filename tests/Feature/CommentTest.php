@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CommentsTest extends TestCase
+class CommentTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -25,8 +25,9 @@ class CommentsTest extends TestCase
     
         $user = \App\Models\User::factory()->create();
         $note = \App\Models\Note::factory()->create();
-
         $token = $user->createToken('auth_token')->accessToken;
+
+        $this->withoutExceptionHandling();
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,

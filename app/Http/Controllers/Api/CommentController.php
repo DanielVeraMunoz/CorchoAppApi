@@ -16,7 +16,7 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
-        response()->json([
+        return response()->json([
             'message' => 'Comentario creado correctamente',
             'data' => $comment,
         ], 201);
