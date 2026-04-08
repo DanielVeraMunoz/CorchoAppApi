@@ -81,4 +81,20 @@ class UserTest extends TestCase
             ]
         ]);
     }
+
+    public function test_authenticated_user_can_delete_own_profile()
+    {
+        $user = \App\Models\User::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/users/' . $user->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario eliminado correctamente',
+        ]);
+    }
 }

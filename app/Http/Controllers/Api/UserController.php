@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $users = \App\Models\User::all();
 
         return response()->json([
@@ -17,35 +18,45 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function show(Request $request, $id){
+    public function show(Request $request, $id)
+    {
         $user = \App\Models\User::find($id);
 
-        if (!$user){
-            return response()->json([
-                'message' => 'Usuario no encontrado'],
-                404);
+        if (!$user) {
+            return response()->json(
+                [
+                    'message' => 'Usuario no encontrado'
+                ],
+                404
+            );
         }
 
         return response()->json([
             'message' => 'Usuario obtenido correctamente',
             'data' => $user,
         ], 200);
-
     }
 
-    public function update(UpdateUserRequest $request, $id){
+    public function update(UpdateUserRequest $request, $id)
+    {
         $user = \App\Models\User::find($id);
 
-        if (!$user){
-            return response()->json([
-                'message' => 'Usuario no encontrado'],
-                404);
+        if (!$user) {
+            return response()->json(
+                [
+                    'message' => 'Usuario no encontrado'
+                ],
+                404
+            );
         }
 
-        if ($user->id != $request->user()->id){
-            return response()->json([
-                'message' => 'No tienes permiso para editar este perfil'],
-                403);
+        if ($user->id != $request->user()->id) {
+            return response()->json(
+                [
+                    'message' => 'No tienes permiso para editar este perfil'
+                ],
+                403
+            );
         }
 
         $user->update([
@@ -60,5 +71,32 @@ class UserController extends Controller
         ], 200);
     }
 
-    
+    public function destroy(Request $request, $id)
+    {
+        $user = \App\Models\User::find($id);
+
+        if (!$user) {
+            return response()->json(
+                [
+                    'message' => 'Usuario no encontrado'
+                ],
+                404
+            );
+        }
+
+        if ($user->id != $request->user()->id) {
+            return response()->json(
+                [
+                    'message' => 'No tienes permiso para eliminar este perfil'
+                ],
+                403
+            );
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'Usuario eliminado correctamente',
+        ], 200);
+    }
 }
