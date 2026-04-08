@@ -11,10 +11,40 @@ class StatsTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+
+    use RefreshDatabase;
+
+    // public function test_example(): void
+    // {
+    //     $response = $this->get('/');
+
+    //     $response->assertStatus(200);
+    // }
+
+    public function test_authenticated_user_can_view_community_stats()
     {
-        $response = $this->get('/');
+        $user = \App\Models\User::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/stats/community');
 
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'message',
+            'data' => [
+                'total_users',
+                'total_notes',
+                'total_comments',
+                'total_thanks',
+            ]
+        ]);
     }
+
+
+
+
+
 }
