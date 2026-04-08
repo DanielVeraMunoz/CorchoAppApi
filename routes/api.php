@@ -53,3 +53,5 @@ Route::delete('/thanks/{id}', [\App\Http\Controllers\Api\ThankController::class,
 //USERS
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])->middleware('auth:api');
+
+Route::get('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'show'])->middleware('auth:api');
