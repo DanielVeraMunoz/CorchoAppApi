@@ -9,10 +9,17 @@ class StatsController extends Controller
 {
     public function communityStats(Request $request)
     {
-        $totalUsers = \App\Models\User::count();
-        $totalNotes = \App\Models\Note::count();
-        $totalComments = \App\Models\Comment::count();
-        $totalThanks = \App\Models\Thank::count();
+        $communityId = $request->user()->community_id;
+        $totalUsers = \App\Models\User::where('community_id', $communityId)->count();
+        $totalNotes = \App\Models\Note::whereHas('user', function ($query) use ($communityId) {
+            $query->where('community_id', $communityId);
+        })->count();
+        $totalComments = \App\Models\Comment::whereHas('note.user', function ($query) use ($communityId) {
+            $query->where('community_id', $communityId);
+        })->count();
+        $totalThanks = \App\Models\Thank::whereHas('note.user', function ($query) use ($communityId) {
+            $query->where('community_id', $communityId);
+        })->count();
 
         return response()->json([
             'message' => 'Estadísticas de la comunidad obtenidas correctamente',
