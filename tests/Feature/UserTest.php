@@ -18,6 +18,7 @@ class UserTest extends TestCase
     //     $response->assertStatus(200);
     // }
 
+        use RefreshDatabase;
 
     public function test_authenticated_user_can_list_users()
     {
@@ -32,7 +33,7 @@ class UserTest extends TestCase
         ])->getJson('/api/users');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(6, 'data'); // 5 usuarios creados + el usuario autenticado
+        $response->assertJsonCount(6, 'data'); 
     }
 
 }

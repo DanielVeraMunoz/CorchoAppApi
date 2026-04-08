@@ -48,3 +48,8 @@ Route::post('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::cl
 Route::get('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'index'])->middleware('auth:api');
 
 Route::delete('/thanks/{id}', [\App\Http\Controllers\Api\ThankController::class, 'destroy'])->middleware('auth:api');
+
+
+//USERS
+
+Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])->middleware('auth:api');
