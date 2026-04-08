@@ -18,7 +18,7 @@ class UserTest extends TestCase
     //     $response->assertStatus(200);
     // }
 
-        use RefreshDatabase;
+    use RefreshDatabase;
 
     public function test_authenticated_user_can_list_users()
     {
@@ -33,7 +33,7 @@ class UserTest extends TestCase
         ])->getJson('/api/users');
 
         $response->assertStatus(200);
-        $response->assertJsonCount(6, 'data'); 
+        $response->assertJsonCount(6, 'data');
     }
 
     public function test_authenticated_user_can_view_user()
@@ -54,7 +54,31 @@ class UserTest extends TestCase
                 'name' => $user->name,
             ]
         ]);
-    
+    }
 
-}
+    public function test_authenticated_user_can_update_own_profile()
+    {
+
+        $user = \App\Models\User::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/users/' . $user->id, [
+            'name' => 'Nuevo Nombre',
+            'email' => $user->email,
+            'password' => 'newpassword',
+            'password_confirmation' => 'newpassword',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario actualizado correctamente',
+            'data' => [
+                'id' => $user->id,
+                'name' => 'Nuevo Nombre',
+            ]
+        ]);
+    }
 }
