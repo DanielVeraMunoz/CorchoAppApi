@@ -15,4 +15,22 @@ class UserController extends Controller
             'data' => $users,
         ], 200);
     }
+
+    public function show(Request $request, $id){
+        $user = \App\Models\User::find($id);
+
+        if (!$user){
+            return response()->json([
+                'message' => 'Usuario no encontrado'],
+                404);
+        }
+
+        return response()->json([
+            'message' => 'Usuario obtenido correctamente',
+            'data' => $user,
+        ], 200);
+
+    }
+
+    
 }
