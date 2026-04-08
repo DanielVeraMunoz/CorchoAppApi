@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,7 +33,7 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateUserRequest $request, $id){
         $user = \App\Models\User::find($id);
 
         if (!$user){

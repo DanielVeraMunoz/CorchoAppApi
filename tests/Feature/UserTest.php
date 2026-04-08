@@ -69,6 +69,7 @@ class UserTest extends TestCase
             'name' => 'Nuevo Nombre',
             'email' => $user->email,
             'password' => 'newpassword',
+            'password_confirmation' => 'newpassword',
         ]);
 
         $response->assertStatus(200);
