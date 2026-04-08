@@ -55,3 +55,5 @@ Route::delete('/thanks/{id}', [\App\Http\Controllers\Api\ThankController::class,
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])->middleware('auth:api');
 
 Route::get('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'show'])->middleware('auth:api');
+
+Route::put('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'update'])->middleware('auth:api');
