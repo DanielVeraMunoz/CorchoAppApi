@@ -29,4 +29,27 @@ class ThankController extends Controller
             'data' => $thanks,
         ], 200);
     }
+
+
+    public function destroy(Request $request, $id){
+        $thank = \App\Models\Thank::find($id);
+
+        if(!$thank){
+            return response()->json([
+                'message' => 'Gracias no encontrada',
+            ], 404);
+        }
+
+        if($thank->giver_id !== $request->user()->id){
+            return response()->json([
+                'message' => 'No tienes permiso para eliminar esta gracias',
+            ], 403);
+        }
+
+        $thank->delete();
+
+        return response()->json([
+            'message' => 'Agradecimiento eliminado correctamente',
+        ], 204);
+    }
 }

@@ -51,4 +51,28 @@ class ThankTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
     }
+
+
+    public function test_authenticated_user_can_delete_own_thank()
+    {
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $thank = \App\Models\Thank::factory()->create([
+            'note_id' => $note->id,
+            'giver_id' => $user->id,
+            'recipient_id' => $note->user_id,
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/thanks/' . $thank->id);
+
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('thanks', [
+            'id' => $thank->id,
+        ]);
+    }
 }
