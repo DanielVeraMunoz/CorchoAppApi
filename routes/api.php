@@ -63,3 +63,5 @@ Route::delete('/users/{id}', [\App\Http\Controllers\Api\UserController::class, '
 //STATS
 
 Route::get('/stats/community', [\App\Http\Controllers\Api\StatsController::class, 'communityStats'])->middleware('auth:api');
+
+Route::get('/stats/top-helpers', [\App\Http\Controllers\Api\StatsController::class, 'topHelpers'])->middleware('auth:api');
