@@ -36,4 +36,25 @@ class UserTest extends TestCase
         $response->assertJsonCount(6, 'data'); 
     }
 
+    public function test_authenticated_user_can_view_user()
+    {
+        $user = \App\Models\User::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/users/' . $user->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario obtenido correctamente',
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ]
+        ]);
+    
+
+}
 }
