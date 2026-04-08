@@ -32,5 +32,32 @@ class UserController extends Controller
 
     }
 
+    public function update(Request $request, $id){
+        $user = \App\Models\User::find($id);
+
+        if (!$user){
+            return response()->json([
+                'message' => 'Usuario no encontrado'],
+                404);
+        }
+
+        if ($user->id != $request->user()->id){
+            return response()->json([
+                'message' => 'No tienes permiso para editar este perfil'],
+                403);
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return response()->json([
+            'message' => 'Usuario actualizado correctamente',
+            'data' => $user,
+        ], 200);
+    }
+
     
 }
