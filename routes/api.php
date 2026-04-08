@@ -59,3 +59,7 @@ Route::get('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'sho
 Route::put('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'update'])->middleware('auth:api');
 
 Route::delete('/users/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy'])->middleware('auth:api');
+
+//STATS
+
+Route::get('/stats/community', [\App\Http\Controllers\Api\StatsController::class, 'communityStats'])->middleware('auth:api');
