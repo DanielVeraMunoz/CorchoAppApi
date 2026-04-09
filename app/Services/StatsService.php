@@ -27,4 +27,27 @@ class StatsService
 
         ];
     }
+
+    public function getTopHelpers($communityId)
+    {
+
+        $tophelpers = User::where('community_id', $communityId)
+            ->withCount('receivedThanks')
+            ->orderByDesc('received_thanks_count')
+            ->take(5)
+            ->get();
+
+        $result = [];
+
+        foreach ($tophelpers as $user) {
+            $result[] = [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'thanks_count' => $user->received_thanks_count,
+            ];
+        }
+
+        return $result;
+
+    }
 }
