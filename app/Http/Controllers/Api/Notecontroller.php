@@ -64,7 +64,7 @@ class Notecontroller extends Controller
                 404);
         }
 
-        if ($note->user_id !== $request->user()->id){
+        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin'){
             return response()->json([
                 'message' => 'No autorizado'],
                 403);
@@ -85,13 +85,14 @@ class Notecontroller extends Controller
     public function destroy(Request $request, $id){
         $note = Note::find($id);
 
+    
         if (!$note){
             return response()->json([
                 'message' => 'Nota no encontrada'],
                 404);
         }
-
-        if ($note->user_id !== $request->user()->id){
+        
+        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin'){
             return response()->json([
                 'message' => 'No autorizado'],
                 403);
