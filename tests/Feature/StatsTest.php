@@ -58,30 +58,12 @@ class StatsTest extends TestCase
         $response->assertJsonStructure([
             'message',
             'data' => [
-                'top_general_helpers' => [
-                    '*' => [
-                        'user_id',
-                        'name',
-                        'thanks_count',
-                    ]
-                ],
-                'top_by_category_helpers' => [
-                    '*' => [
-                        'category_id',
-                        'category_name',
-                        'helpers' => [
-                            '*' => [
-                                'user_id',
-                                'name',
-                                'thanks_count',
-                            ]
-                        ]
-                    ]
-                ],
+                '*' => [
+                    'user_id',
+                    'name',
+                    'thanks_count',
+                ]
             ]
         ]);
     }
-
-
-
 }
