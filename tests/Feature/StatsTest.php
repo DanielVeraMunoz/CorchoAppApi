@@ -43,8 +43,27 @@ class StatsTest extends TestCase
         ]);
     }
 
+    public function test_authenticated_user_can_view_top_helpers()
+    {
+        $community = \App\Models\Community::factory()->create();
+        $user = \App\Models\User::factory()->create(['community_id' => $community->id]);
+        $token = $user->createToken('auth_token')->accessToken;
 
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/stats/top-helpers');
 
-
-
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'message',
+            'data' => [
+                '*' => [
+                    'user_id',
+                    'name',
+                    'thanks_count',
+                ]
+            ]
+        ]);
+    }
 }
