@@ -36,6 +36,22 @@ class UserTest extends TestCase
         $response->assertJsonCount(6, 'data');
     }
 
+    public function test_authenticated_admin_can_list_users()
+    {
+        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        \App\Models\User::factory()->count(5)->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/users');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(6, 'data');
+    }
+
     public function test_authenticated_user_can_view_user()
     {
         $user = \App\Models\User::factory()->create();
@@ -55,6 +71,29 @@ class UserTest extends TestCase
             ]
         ]);
     }
+
+    public function test_authenticated_admin_can_view_user()
+    {
+        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        $user = \App\Models\User::factory()->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/users/' . $user->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario obtenido correctamente',
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ]
+        ]);
+    }
+    
 
     public function test_authenticated_user_can_update_own_profile()
     {
@@ -82,6 +121,70 @@ class UserTest extends TestCase
         ]);
     }
 
+    public function test_authenticated_user_cant_update_other_profile()
+    {
+        $user1 = \App\Models\User::factory()->create();
+        $user2 = \App\Models\User::factory()->create();
+        $token = $user1->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/users/' . $user2->id, [
+            'name' => 'Nuevo Nombre',
+            'email' => $user2->email,
+            'password' => 'newpassword',
+            'password_confirmation' => 'newpassword',
+        ]);
+
+        $response->assertStatus(403);
+        $response->assertJson([
+            'message' => 'No tienes permiso para editar este perfil',
+        ]);
+    }
+
+    public function test_authenticated_admin_can_update_other_profile()
+    {
+        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
+        $user = \App\Models\User::factory()->create();
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/users/' . $user->id, [
+            'name' => 'Nuevo Nombre',
+            'email' => $user->email,
+            'password' => 'newpassword',
+            'password_confirmation' => 'newpassword',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario actualizado correctamente',
+            'data' => [
+                'id' => $user->id,
+                'name' => 'Nuevo Nombre',
+            ]
+        ]);
+    }
+
+    public function test_authenticated_admin_can_delete_own_profile()
+    {
+        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/users/' . $admin->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario eliminado correctamente',
+        ]);
+    }
+
     public function test_authenticated_user_can_delete_own_profile()
     {
         $user = \App\Models\User::factory()->create();
@@ -97,4 +200,40 @@ class UserTest extends TestCase
             'message' => 'Usuario eliminado correctamente',
         ]);
     }
+
+    public function test_authenticated_user_cant_delete_other_profile()
+    {
+        $user1 = \App\Models\User::factory()->create();
+        $user2 = \App\Models\User::factory()->create();
+        $token = $user1->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/users/' . $user2->id);
+
+        $response->assertStatus(403);
+        $response->assertJson([
+            'message' => 'No tienes permiso para eliminar este perfil',
+        ]);
+    }
+
+    public function test_authenticated_admin_can_delete_other_profile()
+    {
+        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
+        $user = \App\Models\User::factory()->create();
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->deleteJson('/api/users/' . $user->id);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'Usuario eliminado correctamente',
+        ]);
+    }
+
+    
 }
