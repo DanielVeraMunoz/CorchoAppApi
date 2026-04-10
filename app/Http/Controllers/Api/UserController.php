@@ -50,7 +50,7 @@ class UserController extends Controller
             );
         }
 
-        if ($user->id != $request->user()->id) {
+        if ($user->id != $request->user()->id && $request->user()->role !== 'admin') {
             return response()->json(
                 [
                     'message' => 'No tienes permiso para editar este perfil'
@@ -84,7 +84,7 @@ class UserController extends Controller
             );
         }
 
-        if ($user->id != $request->user()->id) {
+        if ($user->id != $request->user()->id && $request->user()->role !== 'admin') {
             return response()->json(
                 [
                     'message' => 'No tienes permiso para eliminar este perfil'
