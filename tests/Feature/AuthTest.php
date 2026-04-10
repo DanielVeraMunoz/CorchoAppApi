@@ -76,6 +76,31 @@ class AuthTest extends TestCase
 
     }
 
+    public function test_user_cant_login_with_wrong_password(): void
+    {
+        //Arrange
+        
+        $community = Community::factory()->create();
+
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+            'community_id' => $community->id
+        ]);
+
+        //Act
+        $response = $this->postJson('/api/login',[
+            'email' => 'test@example.com',
+            'password' => 'wrongpassword',
+        ]);
+
+        //Assert
+        $response->assertStatus(401);
+        $response->assertJson([
+            'message' => 'Credenciales incorrectas',
+        ]);
+    }
+
     public function test_user_can_logout(): void{
         //Arrange
 
@@ -98,4 +123,6 @@ class AuthTest extends TestCase
             'message' => 'Logout correcto',
         ]);
     }
+
+    
 }
