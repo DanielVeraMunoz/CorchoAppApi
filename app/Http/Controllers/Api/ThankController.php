@@ -7,24 +7,34 @@ use Illuminate\Http\Request;
 
 class ThankController extends Controller
 {
-    public function store(Request $request, $recipientId){
-         
-    $request->validate([
+    public function store(Request $request, $recipientId)
+    {
+
+        $request->validate([
             'note_id' => 'required|exists:notes,id',
             'message' => 'nullable|string|max:255',
         ]);
 
+
+
+        if (($recipientId == $request->user()->id)) {
+            return response()->json([
+                'message' => 'No puedes agradecerte a ti mismo.',
+            ], 422);
+        }
+
         $note = \App\Models\Note::find($request->input('note_id'));
 
-        if(!$note){
+        if (!$note) {
             return response()->json([
                 'message' => 'Nota no encontrada',
             ], 404);
         }
-        
-    
-        if($note->user_id !== $request->user()->id){
-            return response()->json(403);
+
+        if ($note->user_id !== $request->user()->id) {
+            return response()->json([
+                'message' => 'Solo el autor de la nota puede agradecer a otros usuarios por su aporte.',
+            ], 403);
         }
 
         $thank = \App\Models\Thank::create([
@@ -38,11 +48,11 @@ class ThankController extends Controller
             'message' => 'Gracias por tu aporte!',
             'data' => $thank,
         ], 201);
-    
     }
 
-    public function index(Request $request, $noteId){
-        $thanks = \App\Models\Thank::where('note_id', $noteId)->with('giver')->get();
+    public function index(Request $request, $userId)
+    {
+        $thanks = \App\Models\Thank::where('recipient_id', $userId)->with('giver')->get();
 
         return response()->json([
             'message' => 'Gracias obtenidas correctamente',
@@ -51,16 +61,17 @@ class ThankController extends Controller
     }
 
 
-    public function destroy(Request $request, $id){
+    public function destroy(Request $request, $id)
+    {
         $thank = \App\Models\Thank::find($id);
 
-        if(!$thank){
+        if (!$thank) {
             return response()->json([
                 'message' => 'Gracias no encontrada',
             ], 404);
         }
 
-        if($thank->giver_id !== $request->user()->id && $request->user()->role !== 'admin'){
+        if ($thank->giver_id !== $request->user()->id && $request->user()->role !== 'admin') {
             return response()->json([
                 'message' => 'No tienes permiso para eliminar esta gracias',
             ], 403);
