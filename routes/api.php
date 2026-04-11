@@ -43,9 +43,9 @@ Route::put('/comments/{id}', [CommentController::class, 'update'])->middleware('
 
 //THANKS
 
-Route::post('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'store'])->middleware('auth:api');
+Route::post('/users/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'store'])->middleware('auth:api');
 
-Route::get('/notes/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'index'])->middleware('auth:api');
+Route::get('/users/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'index'])->middleware('auth:api');
 
 Route::delete('/thanks/{id}', [\App\Http\Controllers\Api\ThankController::class, 'destroy'])->middleware('auth:api');
 
