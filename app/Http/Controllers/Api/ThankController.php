@@ -7,18 +7,38 @@ use Illuminate\Http\Request;
 
 class ThankController extends Controller
 {
-    public function store(Request $request, $noteId){
+    public function store(Request $request, $recipientId){
+         
+    $request->validate([
+            'note_id' => 'required|exists:notes,id',
+            'message' => 'nullable|string|max:255',
+        ]);
+
+        $note = \App\Models\Note::find($request->input('note_id'));
+
+        if(!$note){
+            return response()->json([
+                'message' => 'Nota no encontrada',
+            ], 404);
+        }
         
-        $thanks = \App\Models\Thank::create([
-            'note_id' => $noteId,
+    
+        if($note->user_id !== $request->user()->id){
+            return response()->json(403);
+        }
+
+        $thank = \App\Models\Thank::create([
+            'note_id' => $request->input('note_id'),
+            'recipient_id' => $recipientId,
             'giver_id' => $request->user()->id,
-            'recipient_id' => \App\Models\Note::find($noteId)->user_id,
+            'message' => $request->input('message'),
         ]);
 
         return response()->json([
-            'message' => 'Gracias enviadas correctamente',
-            'data' => $thanks,
+            'message' => 'Gracias por tu aporte!',
+            'data' => $thank,
         ], 201);
+    
     }
 
     public function index(Request $request, $noteId){

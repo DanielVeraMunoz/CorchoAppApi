@@ -11,41 +11,28 @@ class ThankTest extends TestCase
 
     use RefreshDatabase;
 
-    public function test_authenticated_user_can_thank_note()
+    public function test_authenticated_user_can_thank_a_user()
     {
-        $user = \App\Models\User::factory()->create();
-        $note = \App\Models\Note::factory()->create();
-        $token = $user->createToken('auth_token')->accessToken;
+
+        $author = \App\Models\User::factory()->create();
+        $recipient = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create(['user_id' => $author->id]);
+        $token = $author->createToken('auth_token')->accessToken;
+
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
-        ])->postJson('/api/notes/' . $note->id . '/thanks');
-
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('thanks', [
+        ])->postJson('/api/users/' . $recipient->id . '/thanks', [
             'note_id' => $note->id,
-            'giver_id' => $user->id,
-            'recipient_id' => $note->user_id,
+            'message' => 'Gracias por tu aporte!',
         ]);
-    }
-
-    public function test_authenticated_admin_can_thank_note()
-    {
-        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
-        $note = \App\Models\Note::factory()->create();
-        $token = $admin->createToken('auth_token')->accessToken;
-
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-            'Accept' => 'application/json',
-        ])->postJson('/api/notes/' . $note->id . '/thanks');
 
         $response->assertStatus(201);
         $this->assertDatabaseHas('thanks', [
             'note_id' => $note->id,
-            'giver_id' => $admin->id,
-            'recipient_id' => $note->user_id,
+            'giver_id' => $author->id,
+            'recipient_id' => $recipient->id,
         ]);
     }
 
@@ -65,7 +52,7 @@ class ThankTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
-        ])->getJson('/api/notes/' . $note->id . '/thanks');
+        ])->getJson('/api/users/' . $note->id . '/thanks');
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
@@ -86,7 +73,7 @@ class ThankTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
-        ])->getJson('/api/notes/' . $note->id . '/thanks');
+        ])->getJson('/api/users/' . $note->id . '/thanks');
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
