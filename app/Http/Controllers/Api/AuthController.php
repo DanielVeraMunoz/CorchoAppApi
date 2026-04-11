@@ -18,8 +18,13 @@ class AuthController extends Controller
 {
 
     /**
+     * Register
+     * 
+     * Register a new user with the provided information. Returns the created user and an access token.
+     * 
      * @unauthenticated
      */
+
     public function register(RegisterRequest $request)
     {
 
@@ -45,6 +50,10 @@ class AuthController extends Controller
 
 
     /**
+     * Login
+     * 
+     * Login a user with the provided information. Returns the user and an access token.
+     * 
      * @unauthenticated
      */
     public function login(LoginRequest $request)
@@ -71,6 +80,13 @@ class AuthController extends Controller
         ], 200);
     }
 
+
+        /**
+     * Logout
+     * 
+     * Logout the authenticated user by revoking their access token. Returns a success message.
+     * 
+     */
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();

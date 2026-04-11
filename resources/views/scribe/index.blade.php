@@ -318,10 +318,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-auth-POSTapi-register">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="POST api/register">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Register">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#auth-POSTapi-register">
-                                                    POST api/register
+                                                    Register
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -726,7 +726,7 @@ You can switch the language used with the tabs at the top right (or from the nav
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="auth-POSTapi-register">
-                    POST api/register
+                    Register
                 </h2>
             </div>
         </div>
@@ -746,10 +746,14 @@ You can switch the language used with the tabs at the top right (or from the nav
                         <div class="sl-flex-1 sl-font-semibold">/api/register</div>
                     </div>
 
+                                                    <div class="sl-font-prose sl-font-semibold sl-px-1.5 sl-py-0.5 sl-text-on-primary sl-rounded-lg"
+                                 style="background-color: darkred"
+                            >requires authentication
+                            </div>
                                                                                     </div>
         </div>
 
-        
+        <p>Register a new user with the provided information. Returns the created user and an access token.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -760,6 +764,24 @@ You can switch the language used with the tabs at the top right (or from the nav
                                 Headers
                             </h3>
                             <div class="sl-text-sm">
+                                                                    <div class="sl-flex sl-relative sl-max-w-full sl-py-2 sl-pl-3">
+    <div class="sl-w-1 sl-mt-2 sl-mr-3 sl--ml-3 sl-border-t"></div>
+    <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
+        <div class="sl-flex sl-items-center sl-max-w-full">
+                                        <div class="sl-flex sl-items-baseline sl-text-base">
+                    <div class="sl-font-mono sl-font-semibold sl-mr-2">Authorization</div>
+                                    </div>
+                                        </div>
+                                            <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
+                <span>Example:</span> <!-- <span> important for spacing -->
+                <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
+                    <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
+                        Bearer {YOUR_AUTH_KEY}
+                    </div>
+                </div>
+            </div>
+            </div>
+</div>
                                                                     <div class="sl-flex sl-relative sl-max-w-full sl-py-2 sl-pl-3">
     <div class="sl-w-1 sl-mt-2 sl-mr-3 sl--ml-3 sl-border-t"></div>
     <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
@@ -991,6 +1013,42 @@ You can switch the language used with the tabs at the top right (or from the nav
               data-path="api/register"
               data-hasfiles="0"
               data-hasjsonbody="1">
+                            <div class="sl-panel sl-outline-none sl-w-full expandable">
+                    <div class="sl-panel__titlebar sl-flex sl-items-center sl-relative focus:sl-z-10 sl-text-base sl-leading-none sl-pr-4 sl-pl-3 sl-bg-canvas-200 sl-text-body sl-border-input focus:sl-border-primary sl-cursor-pointer sl-select-none"
+                         role="button">
+                        <div class="sl-flex sl-flex-1 sl-items-center sl-h-lg">
+                            <div class="sl-flex sl-items-center sl-mr-1.5 expansion-chevrons expansion-chevrons-solid expanded">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                     data-icon="caret-down"
+                                     class="svg-inline--fa fa-caret-down fa-fw sl-icon" role="img"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                    <path fill="currentColor"
+                                          d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"></path>
+                                </svg>
+                            </div>
+                            Auth
+                        </div>
+                    </div>
+                    <div class="sl-panel__content-wrapper sl-bg-canvas-100 children" role="region">
+                        <div class="ParameterGrid sl-p-4">
+                            <label aria-hidden="true"
+                                   for="auth-POSTapi-register">Authorization</label>
+                            <span class="sl-mx-3">:</span>
+                            <div class="sl-flex sl-flex-1">
+                                <div class="sl-input sl-flex-1 sl-relative">
+                                    <code>Bearer </code>
+                                    <input aria-label="Authorization"
+                                           id="auth-POSTapi-register"
+                                           data-component="header"
+                                           data-prefix="Bearer "
+                                           name="Authorization"
+                                           placeholder="{YOUR_AUTH_KEY}"
+                                           class="auth-value sl-relative sl-w-3/5 sl-h-md sl-text-base sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             
                             <div class="sl-panel sl-outline-none sl-w-full expandable">
                     <div class="sl-panel__titlebar sl-flex sl-items-center sl-relative focus:sl-z-10 sl-text-base sl-leading-none sl-pr-4 sl-pl-3 sl-bg-canvas-200 sl-text-body sl-border-input focus:sl-border-primary sl-cursor-pointer sl-select-none"
@@ -1010,7 +1068,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                     </div>
                     <div class="sl-panel__content-wrapper sl-bg-canvas-100 children" role="region">
                         <div class="ParameterGrid sl-p-4">
-                                                                                            <label aria-hidden="true"
+                                                                                                                            <label aria-hidden="true"
                                        for="header-POSTapi-register-Content-Type">Content-Type</label>
                                 <span class="sl-mx-3">:</span>
                                 <div class="sl-flex sl-flex-1">
@@ -1158,6 +1216,7 @@ You can check the Dev Tools console for debugging information.</p>
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/register" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1180,6 +1239,7 @@ You can check the Dev Tools console for debugging information.</p>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3858,7 +3918,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-11T18:13:58
+                        2026-04-11T18:17:27
                     </div>
                 </div>
             </div>
@@ -3991,7 +4051,7 @@ fetch(url, {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-11T18:13:58"
+    "event_date": "2026-04-11T18:17:27"
 }</div>
                             </div>
                                             </div>
@@ -4091,7 +4151,7 @@ You can check the Dev Tools console for debugging information.</p>
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
     \"category_id\": \"architecto\",
-    \"event_date\": \"2026-04-11T18:13:58\"
+    \"event_date\": \"2026-04-11T18:17:27\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -4114,7 +4174,7 @@ let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-11T18:13:58"
+    "event_date": "2026-04-11T18:17:27"
 };
 
 fetch(url, {
@@ -5178,7 +5238,7 @@ access-control-allow-origin: *</code></pre>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-11T18:13:58
+                        2026-04-11T18:17:27
                     </div>
                 </div>
             </div>
@@ -5344,7 +5404,7 @@ access-control-allow-origin: *</code></pre>
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": null,
-    "event_date": "2026-04-11T18:13:58"
+    "event_date": "2026-04-11T18:17:27"
 }</div>
                             </div>
                                             </div>
@@ -5443,7 +5503,7 @@ You can check the Dev Tools console for debugging information.</p>
     --data "{
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"event_date\": \"2026-04-11T18:13:58\"
+    \"event_date\": \"2026-04-11T18:17:27\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -5465,7 +5525,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
-    "event_date": "2026-04-11T18:13:58"
+    "event_date": "2026-04-11T18:17:27"
 };
 
 fetch(url, {
