@@ -14,10 +14,9 @@ endpoints:
       subgroupDescription: ''
       title: Register
       description: 'Register a new user with the provided information. Returns the created user and an access token.'
-      authenticated: true
+      authenticated: false
       deprecated: false
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -101,10 +100,7 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    auth: []
     controller: null
     method: null
     route: null
@@ -119,8 +115,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: Login
+      description: 'Login a user with the provided information. Returns the user and an access token.'
       authenticated: false
       deprecated: false
     headers:
@@ -174,8 +170,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: Logout
+      description: 'Logout the authenticated user by revoking their access token. Returns a success message.'
       authenticated: true
       deprecated: false
     headers:
