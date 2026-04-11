@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('description');
-            $table->date('event_date')->nullable(false);
+            $table->date('event_date')->nullable(true);
             $table->boolean('is_completed')->default(false);
 
             $table->timestamps();
