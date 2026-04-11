@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+StatsController:
+/**
+ * @group Stats
+ */
+
 class StatsController extends Controller
 {
     public function communityStats(Request $request)

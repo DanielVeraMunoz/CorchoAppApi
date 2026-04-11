@@ -8,6 +8,12 @@ use App\Http\Requests\UpdateNoteRequest;
 use Illuminate\Http\Request;
 use App\Models\Note;
 
+NoteController:
+/**
+ * @group Notes
+ */
+
+
 class Notecontroller extends Controller
 {
     public function store(StoreNoteRequest $request)
@@ -27,6 +33,12 @@ class Notecontroller extends Controller
             'data' => $note,
         ], 201);
     }
+
+    /**
+     * List all notes
+     * 
+     * Return all notes from the authenticated user.
+     */
 
 
     public function index(Request $request)

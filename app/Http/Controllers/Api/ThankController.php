@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+ThankController:
+/**
+ * @group Thanks
+ */
+
+
 class ThankController extends Controller
 {
     public function store(Request $request, $recipientId)

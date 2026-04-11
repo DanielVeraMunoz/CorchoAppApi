@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 
+UserController:
+/**
+ * @group Users
+ */
+
+
 class UserController extends Controller
 {
     public function index(Request $request)

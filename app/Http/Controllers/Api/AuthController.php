@@ -9,10 +9,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+AuthController:
+/**
+ * @group Auth
+ */
 
 class AuthController extends Controller
 {
 
+    /**
+     * @unauthenticated
+     */
     public function register(RegisterRequest $request)
     {
 
@@ -36,6 +43,10 @@ class AuthController extends Controller
         ], 201);
     }
 
+
+    /**
+     * @unauthenticated
+     */
     public function login(LoginRequest $request)
     {
 
@@ -60,7 +71,8 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->token()->revoke();
 
         return response()->json([

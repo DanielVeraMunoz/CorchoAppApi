@@ -8,6 +8,13 @@ use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 
+CommentController:
+/**
+ * @group Comments
+ */
+
+
+
 class CommentController extends Controller
 {
     public function store(StoreCommentRequest $request, $noteId)
