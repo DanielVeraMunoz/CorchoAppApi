@@ -489,4 +489,62 @@ class NoteTest extends TestCase
             'is_completed' => false,
         ]);
     }
+
+    public function test_authenticated_user_can_filter_notes_by_completed_status()
+    {
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+
+        Note::factory()->count(2)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'is_completed' => false,
+        ]);
+
+        Note::factory()->count(3)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'is_completed' => true,
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/notes?status=completed');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(3, 'data');
+    }
+
+    public function test_authenticated_user_can_filter_notes_by_active_status()
+    {
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+
+        Note::factory()->count(2)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'is_completed' => false,
+        ]);
+
+        Note::factory()->count(3)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'is_completed' => true,
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/notes?status=active');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2, 'data');
+}
 }

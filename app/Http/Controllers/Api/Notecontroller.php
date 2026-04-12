@@ -47,7 +47,17 @@ class Notecontroller extends Controller
      */
     public function index(Request $request)
     {
-        $notes = Note::where('user_id', $request->user()->id)->get();
+        $query = Note::where('user_id', $request->user()->id);
+
+        $status = $request->query('status');
+
+        if ($status === 'completed') {
+            $query->where('is_completed', true);
+        } elseif ($status === 'active') {
+            $query->where('is_completed', false);
+        }
+
+        $notes = $query->get();
 
         return response()->json([
             'message' => 'Notas obtenidas correctamente',
