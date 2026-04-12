@@ -19,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
-//NOTES
+//NOTE
 
 Route::post('/notes', [NoteController::class, 'store'])->middleware('auth:api');
 
@@ -36,7 +36,7 @@ Route::patch('/notes/{id}/complete', [NoteController::class, 'complete'])->middl
 Route::patch('/notes/{id}/reopen', [NoteController::class, 'reopen'])->middleware('auth:api');
 
 
-//COMMENTS
+//COMMENT
 
 Route::post('/notes/{id}/comments', [CommentController::class, 'store'])->middleware('auth:api');
 
@@ -46,7 +46,7 @@ Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->middlewa
 
 Route::put('/comments/{id}', [CommentController::class, 'update'])->middleware('auth:api');
 
-//THANKS
+//THANK
 
 Route::post('/users/{id}/thanks', [\App\Http\Controllers\Api\ThankController::class, 'store'])->middleware('auth:api');
 
@@ -55,7 +55,7 @@ Route::get('/users/{id}/thanks', [\App\Http\Controllers\Api\ThankController::cla
 Route::delete('/thanks/{id}', [\App\Http\Controllers\Api\ThankController::class, 'destroy'])->middleware('auth:api');
 
 
-//USERS
+//USER
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])->middleware('auth:api');
 
@@ -70,3 +70,7 @@ Route::delete('/users/{id}', [\App\Http\Controllers\Api\UserController::class, '
 Route::get('/stats/community', [\App\Http\Controllers\Api\StatsController::class, 'communityStats'])->middleware('auth:api');
 
 Route::get('/stats/top-helpers', [\App\Http\Controllers\Api\StatsController::class, 'topHelpers'])->middleware('auth:api');
+
+//CATEGORY
+
+Route::get('/categories', [\App\Http\Controllers\Api\CategoryController::class, 'index'])->middleware('auth:api');

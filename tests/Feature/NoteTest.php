@@ -29,6 +29,7 @@ class NoteTest extends TestCase
             'description' => 'Aquí iría la descripción jeje',
             'category_id' => $category->id,
             'event_date' => '2027-12-31',
+            'is_completed' => false,
         ];
 
         //Act (hacer la petición)
