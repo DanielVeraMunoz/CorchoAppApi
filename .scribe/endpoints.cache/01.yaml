@@ -65,7 +65,7 @@ endpoints:
         name: event_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-04-12T08:47:24'
+        example: '2026-04-12T14:01:42'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -75,7 +75,7 @@ endpoints:
       title: b
       description: 'Eius et animi quos velit et.'
       category_id: architecto
-      event_date: '2026-04-12T08:47:24'
+      event_date: '2026-04-12T14:01:42'
     fileParameters: []
     responses: []
     responseFields: []
@@ -260,7 +260,7 @@ endpoints:
         name: event_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-04-12T08:47:24'
+        example: '2026-04-12T14:01:42'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -269,7 +269,7 @@ endpoints:
     cleanBodyParameters:
       title: b
       description: 'Eius et animi quos velit et.'
-      event_date: '2026-04-12T08:47:24'
+      event_date: '2026-04-12T14:01:42'
     fileParameters: []
     responses: []
     responseFields: []
@@ -293,6 +293,100 @@ endpoints:
       subgroupDescription: ''
       title: 'Delete a note'
       description: 'Delete an existing note. Returns a success message.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}/complete'
+    metadata:
+      custom: []
+      groupName: Notes
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Complete a note'
+      description: 'Mark a note as completed. Returns the updated note.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}/reopen'
+    metadata:
+      custom: []
+      groupName: Notes
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reopen a note'
+      description: 'Reopen a completed note. Returns the updated note.'
       authenticated: true
       deprecated: false
     headers:

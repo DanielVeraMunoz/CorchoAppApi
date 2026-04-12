@@ -18,7 +18,7 @@ CommentController:
 class CommentController extends Controller
 {
 
-        /**
+    /**
      * Create a comment
      * 
      * Create a new comment for a specific note. Returns the created comment.
@@ -33,19 +33,24 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
+        if ($noteId->is_completed === true) {
+            return response()->json([
+                'message' => 'No se pueden agregar comentarios a una nota completada',
+            ], 400);
+        }
+
         return response()->json([
             'message' => 'Comentario creado correctamente',
             'data' => $comment,
         ], 201);
     }
 
-        /**
+    /**
      * List all comments for a note
      * 
      * Returns a list of all comments for a specific note.
      * 
      */
-
     public function index($noteId)
     {
         $comments = Comment::where('note_id', $noteId)->with('user')->get();
@@ -56,13 +61,12 @@ class CommentController extends Controller
         ], 200);
     }
 
-        /**
+    /**
      * Update a comment
      * 
      * Update the content of an existing comment. Returns the updated comment.
      * 
      */
-
     public function update(UpdateCommentRequest $request, $id)
     {
         $comment = Comment::find($id);
@@ -95,13 +99,12 @@ class CommentController extends Controller
         ], 200);
     }
 
-        /**
+    /**
      * Delete a comment
      * 
      * Delete an existing comment. Returns a success message.
      * 
      */
-
     public function destroy(Request $request, $id)
     {
         $comment = Comment::find($id);

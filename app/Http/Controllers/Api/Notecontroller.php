@@ -155,6 +155,13 @@ class Notecontroller extends Controller
         ], 200);
     }
 
+
+    /**
+     * Complete a note
+     * 
+     * Mark a note as completed. Returns the updated note.
+     * 
+     */
     public function complete(Request $request, $id)
     {
         $note = Note::find($id);
@@ -185,6 +192,12 @@ class Notecontroller extends Controller
         ], 200);
     }
 
+        /**
+     * Reopen a note
+     * 
+     * Reopen a completed note. Returns the updated note.
+     * 
+     */
     public function reopen(Request $request, $id)
     {
         $note = Note::find($id);
