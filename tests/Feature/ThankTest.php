@@ -45,14 +45,14 @@ class ThankTest extends TestCase
 
         \App\Models\Thank::factory()->count(3)->create([
             'note_id' => $note->id,
-            'giver_id' => $user->id,
-            'recipient_id' => $note->user_id,
+            'giver_id' => $note->user_id,
+            'recipient_id' => $user->id,
         ]);
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
-        ])->getJson('/api/users/' . $note->id . '/thanks');
+        ])->getJson('/api/users/' . $user->id . '/thanks');
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
@@ -73,7 +73,7 @@ class ThankTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
-        ])->getJson('/api/users/' . $note->id . '/thanks');
+        ])->getJson('/api/users/' . $note->user_id . '/thanks');
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
