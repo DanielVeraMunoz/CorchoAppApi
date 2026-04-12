@@ -14,8 +14,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'List all users'
+      description: 'Return a list of all users in the community.'
       authenticated: true
       deprecated: false
     headers:
@@ -58,8 +58,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Show a user'
+      description: 'Return the details of a specific user.'
       authenticated: true
       deprecated: false
     headers:
@@ -114,8 +114,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Update a user'
+      description: 'Update the information of an existing user. Returns the updated user.'
       authenticated: true
       deprecated: false
     headers:
@@ -197,8 +197,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Delete a user'
+      description: 'Delete an existing user. Returns a success message.'
       authenticated: true
       deprecated: false
     headers:

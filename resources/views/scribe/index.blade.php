@@ -440,10 +440,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-notes-POSTapi-notes">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="POST api/notes">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Create a note">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#notes-POSTapi-notes">
-                                                    POST api/notes
+                                                    Create a note
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -464,10 +464,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-notes-GETapi-notes--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/notes/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Show a note">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#notes-GETapi-notes--id-">
-                                                    GET api/notes/{id}
+                                                    Show a note
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -476,10 +476,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-notes-PUTapi-notes--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="PUT api/notes/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Update a note">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#notes-PUTapi-notes--id-">
-                                                    PUT api/notes/{id}
+                                                    Update a note
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -488,10 +488,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-notes-DELETEapi-notes--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="DELETE api/notes/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Delete a note">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#notes-DELETEapi-notes--id-">
-                                                    DELETE api/notes/{id}
+                                                    Delete a note
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -519,10 +519,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-stats-GETapi-stats-community">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/stats/community">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Community Stats">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#stats-GETapi-stats-community">
-                                                    GET api/stats/community
+                                                    Community Stats
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -531,10 +531,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-stats-GETapi-stats-top-helpers">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/stats/top-helpers">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Top Helpers">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#stats-GETapi-stats-top-helpers">
-                                                    GET api/stats/top-helpers
+                                                    Top Helpers
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -562,10 +562,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-thanks-POSTapi-users--id--thanks">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="POST api/users/{id}/thanks">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Create a thank">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#thanks-POSTapi-users--id--thanks">
-                                                    POST api/users/{id}/thanks
+                                                    Create a thank
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -574,10 +574,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-thanks-GETapi-users--id--thanks">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/users/{id}/thanks">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="List all thanks for a user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#thanks-GETapi-users--id--thanks">
-                                                    GET api/users/{id}/thanks
+                                                    List all thanks for a user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -586,10 +586,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-thanks-DELETEapi-thanks--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="DELETE api/thanks/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Delete a thank">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#thanks-DELETEapi-thanks--id-">
-                                                    DELETE api/thanks/{id}
+                                                    Delete a thank
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -617,10 +617,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-GETapi-users">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/users">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="List all users">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-GETapi-users">
-                                                    GET api/users
+                                                    List all users
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -629,10 +629,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-GETapi-users--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/users/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Show a user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-GETapi-users--id-">
-                                                    GET api/users/{id}
+                                                    Show a user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -641,10 +641,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-PUTapi-users--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="PUT api/users/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Update a user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-PUTapi-users--id-">
-                                                    PUT api/users/{id}
+                                                    Update a user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -653,10 +653,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-DELETEapi-users--id-">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="DELETE api/users/{id}">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Delete a user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-DELETEapi-users--id-">
-                                                    DELETE api/users/{id}
+                                                    Delete a user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -668,7 +668,7 @@
 
         </div>
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
-            Last updated: April 11, 2026
+            Last updated: April 12, 2026
         </div>
 
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
@@ -3655,7 +3655,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="notes-POSTapi-notes">
-                    POST api/notes
+                    Create a note
                 </h2>
             </div>
         </div>
@@ -3682,7 +3682,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Create a new note with the provided information. Returns the created note.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -3858,7 +3858,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-11T18:22:10
+                        2026-04-12T08:47:24
                     </div>
                 </div>
             </div>
@@ -3991,7 +3991,7 @@ fetch(url, {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-11T18:22:10"
+    "event_date": "2026-04-12T08:47:24"
 }</div>
                             </div>
                                             </div>
@@ -4091,7 +4091,7 @@ You can check the Dev Tools console for debugging information.</p>
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
     \"category_id\": \"architecto\",
-    \"event_date\": \"2026-04-11T18:22:10\"
+    \"event_date\": \"2026-04-12T08:47:24\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -4114,7 +4114,7 @@ let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-11T18:22:10"
+    "event_date": "2026-04-12T08:47:24"
 };
 
 fetch(url, {
@@ -4517,7 +4517,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="notes-GETapi-notes--id-">
-                    GET api/notes/{id}
+                    Show a note
                 </h2>
             </div>
         </div>
@@ -4544,7 +4544,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Return the details of a specific note.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -4963,7 +4963,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="notes-PUTapi-notes--id-">
-                    PUT api/notes/{id}
+                    Update a note
                 </h2>
             </div>
         </div>
@@ -4990,7 +4990,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Update the title, description, category, or event date of an existing note. Returns the updated note.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -5178,7 +5178,7 @@ access-control-allow-origin: *</code></pre>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-11T18:22:11
+                        2026-04-12T08:47:24
                     </div>
                 </div>
             </div>
@@ -5344,7 +5344,7 @@ access-control-allow-origin: *</code></pre>
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": null,
-    "event_date": "2026-04-11T18:22:11"
+    "event_date": "2026-04-12T08:47:24"
 }</div>
                             </div>
                                             </div>
@@ -5443,7 +5443,7 @@ You can check the Dev Tools console for debugging information.</p>
     --data "{
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"event_date\": \"2026-04-11T18:22:11\"
+    \"event_date\": \"2026-04-12T08:47:24\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -5465,7 +5465,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
-    "event_date": "2026-04-11T18:22:11"
+    "event_date": "2026-04-12T08:47:24"
 };
 
 fetch(url, {
@@ -5487,7 +5487,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="notes-DELETEapi-notes--id-">
-                    DELETE api/notes/{id}
+                    Delete a note
                 </h2>
             </div>
         </div>
@@ -5514,7 +5514,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Delete an existing note. Returns a success message.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -5882,7 +5882,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="stats-GETapi-stats-community">
-                    GET api/stats/community
+                    Community Stats
                 </h2>
             </div>
         </div>
@@ -5909,7 +5909,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Returns statistics about the community.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -6263,7 +6263,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="stats-GETapi-stats-top-helpers">
-                    GET api/stats/top-helpers
+                    Top Helpers
                 </h2>
             </div>
         </div>
@@ -6290,7 +6290,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Returns a list of the top helpers in the community.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -6652,7 +6652,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="thanks-POSTapi-users--id--thanks">
-                    POST api/users/{id}/thanks
+                    Create a thank
                 </h2>
             </div>
         </div>
@@ -6679,7 +6679,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Create a new thank for a specific note and recipient. Returns the created thank.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -7137,7 +7137,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="thanks-GETapi-users--id--thanks">
-                    GET api/users/{id}/thanks
+                    List all thanks for a user
                 </h2>
             </div>
         </div>
@@ -7164,7 +7164,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Returns a list of all thanks received in a specific user.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -7583,7 +7583,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="thanks-DELETEapi-thanks--id-">
-                    DELETE api/thanks/{id}
+                    Delete a thank
                 </h2>
             </div>
         </div>
@@ -7610,7 +7610,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Delete an existing thank. Returns a success message.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -7978,7 +7978,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-GETapi-users">
-                    GET api/users
+                    List all users
                 </h2>
             </div>
         </div>
@@ -8005,7 +8005,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Return a list of all users in the community.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -8359,7 +8359,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-GETapi-users--id-">
-                    GET api/users/{id}
+                    Show a user
                 </h2>
             </div>
         </div>
@@ -8386,7 +8386,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Return the details of a specific user.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -8805,7 +8805,7 @@ access-control-allow-origin: *</code></pre>
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-PUTapi-users--id-">
-                    PUT api/users/{id}
+                    Update a user
                 </h2>
             </div>
         </div>
@@ -8832,7 +8832,7 @@ access-control-allow-origin: *</code></pre>
                                                                                     </div>
         </div>
 
-        
+        <p>Update the information of an existing user. Returns the updated user.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -9326,7 +9326,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-DELETEapi-users--id-">
-                    DELETE api/users/{id}
+                    Delete a user
                 </h2>
             </div>
         </div>
@@ -9353,7 +9353,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        
+        <p>Delete an existing user. Returns a success message.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">

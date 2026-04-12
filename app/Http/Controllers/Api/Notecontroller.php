@@ -16,6 +16,12 @@ NoteController:
 
 class Notecontroller extends Controller
 {
+    /**
+     * Create a note
+     * 
+     * Create a new note with the provided information. Returns the created note.
+     * 
+     */
     public function store(StoreNoteRequest $request)
     {
 
@@ -49,20 +55,29 @@ class Notecontroller extends Controller
         ], 200);
     }
 
-    public function show(Request $request, $id){
+    /**
+     * Show a note
+     * 
+     * Return the details of a specific note.
+     * 
+     */
+    public function show(Request $request, $id)
+    {
         $note = Note::find($id);
 
-        if (!$note){
-            return response()->json([
-                'message' => 'Nota no encontrada'],
-                404);
+        if (!$note) {
+            return response()->json(
+                [
+                    'message' => 'Nota no encontrada'
+                ],
+                404
+            );
         }
 
         return response()->json([
             'message' => 'Nota obtenida correctamente',
             'data' => $note,
         ], 200);
-
     }
 
     /**
@@ -70,19 +85,26 @@ class Notecontroller extends Controller
      * 
      * Update the title, description, category, or event date of an existing note. Returns the updated note.
      */
-    public function update(UpdateNoteRequest $request, $id){
+    public function update(UpdateNoteRequest $request, $id)
+    {
         $note = Note::find($id);
 
-        if (!$note){
-            return response()->json([
-                'message' => 'Nota no encontrada'],
-                404);
+        if (!$note) {
+            return response()->json(
+                [
+                    'message' => 'Nota no encontrada'
+                ],
+                404
+            );
         }
 
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin'){
-            return response()->json([
-                'message' => 'No autorizado'],
-                403);
+        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
+            return response()->json(
+                [
+                    'message' => 'No autorizado'
+                ],
+                403
+            );
         }
 
         $note->update([
@@ -95,7 +117,7 @@ class Notecontroller extends Controller
             'message' => 'Nota actualizada correctamente',
             'data' => $note,
         ], 200);
-    }   
+    }
 
     /**
      * Delete a note
@@ -103,20 +125,27 @@ class Notecontroller extends Controller
      * Delete an existing note. Returns a success message.
      * 
      */
-    public function destroy(Request $request, $id){
+    public function destroy(Request $request, $id)
+    {
         $note = Note::find($id);
 
-    
-        if (!$note){
-            return response()->json([
-                'message' => 'Nota no encontrada'],
-                404);
+
+        if (!$note) {
+            return response()->json(
+                [
+                    'message' => 'Nota no encontrada'
+                ],
+                404
+            );
         }
-        
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin'){
-            return response()->json([
-                'message' => 'No autorizado'],
-                403);
+
+        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
+            return response()->json(
+                [
+                    'message' => 'No autorizado'
+                ],
+                403
+            );
         }
 
         $note->delete();
@@ -125,5 +154,4 @@ class Notecontroller extends Controller
             'message' => 'Nota eliminada correctamente',
         ], 200);
     }
-
 }

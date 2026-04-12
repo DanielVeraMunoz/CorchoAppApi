@@ -12,8 +12,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Community Stats'
+      description: 'Returns statistics about the community.'
       authenticated: true
       deprecated: false
     headers:
@@ -56,8 +56,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Top Helpers'
+      description: 'Returns a list of the top helpers in the community.'
       authenticated: true
       deprecated: false
     headers:

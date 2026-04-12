@@ -14,8 +14,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Create a note'
+      description: 'Create a new note with the provided information. Returns the created note.'
       authenticated: true
       deprecated: false
     headers:
@@ -65,7 +65,7 @@ endpoints:
         name: event_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-04-11T18:22:10'
+        example: '2026-04-12T08:47:24'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -75,7 +75,7 @@ endpoints:
       title: b
       description: 'Eius et animi quos velit et.'
       category_id: architecto
-      event_date: '2026-04-11T18:22:10'
+      event_date: '2026-04-12T08:47:24'
     fileParameters: []
     responses: []
     responseFields: []
@@ -141,8 +141,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Show a note'
+      description: 'Return the details of a specific note.'
       authenticated: true
       deprecated: false
     headers:
@@ -197,8 +197,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Update a note'
+      description: 'Update the title, description, category, or event date of an existing note. Returns the updated note.'
       authenticated: true
       deprecated: false
     headers:
@@ -260,7 +260,7 @@ endpoints:
         name: event_date
         description: 'Must be a valid date.'
         required: false
-        example: '2026-04-11T18:22:11'
+        example: '2026-04-12T08:47:24'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -269,7 +269,7 @@ endpoints:
     cleanBodyParameters:
       title: b
       description: 'Eius et animi quos velit et.'
-      event_date: '2026-04-11T18:22:11'
+      event_date: '2026-04-12T08:47:24'
     fileParameters: []
     responses: []
     responseFields: []
@@ -291,8 +291,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Delete a note'
+      description: 'Delete an existing note. Returns a success message.'
       authenticated: true
       deprecated: false
     headers:

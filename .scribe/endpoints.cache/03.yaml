@@ -14,8 +14,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Create a thank'
+      description: 'Create a new thank for a specific note and recipient. Returns the created thank.'
       authenticated: true
       deprecated: false
     headers:
@@ -85,8 +85,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'List all thanks for a user'
+      description: 'Returns a list of all thanks received in a specific user.'
       authenticated: true
       deprecated: false
     headers:
@@ -141,8 +141,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Delete a thank'
+      description: 'Delete an existing thank. Returns a success message.'
       authenticated: true
       deprecated: false
     headers:
