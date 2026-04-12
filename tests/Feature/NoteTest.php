@@ -389,4 +389,29 @@ class NoteTest extends TestCase
             'id' => $note->id,
         ]);
     }
+
+    public function test_note_author_can_complete_own_note()
+    {
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+        $note = Note::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'is_completed' => false,
+        ]);
+
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->patchJson('/api/notes/' . $note->id . '/complete');
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('notes', [
+            'id' => $note->id,
+            'is_completed' => true,
+        ]);
+}
 }
