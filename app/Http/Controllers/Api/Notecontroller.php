@@ -154,4 +154,35 @@ class Notecontroller extends Controller
             'message' => 'Nota eliminada correctamente',
         ], 200);
     }
+
+    public function complete(Request $request, $id)
+    {
+        $note = Note::find($id);
+
+        if (!$note) {
+            return response()->json(
+                [
+                    'message' => 'Nota no encontrada'
+                ],
+                404
+            );
+        }
+
+        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
+            return response()->json(
+                [
+                    'message' => 'No autorizado'
+                ],
+                403
+            );
+        }
+
+        $note->update(['is_completed' => true]);
+
+        return response()->json([
+            'message' => 'Nota marcada como completada',
+            'data' => $note,
+        ], 200);
+    
+        }
 }

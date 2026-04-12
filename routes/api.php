@@ -31,6 +31,8 @@ Route::put('/notes/{id}', [NoteController::class, 'update'])->middleware('auth:a
 
 Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('auth:api');
 
+Route::patch('/notes/{id}/complete', [NoteController::class, 'complete'])->middleware('auth:api');
+
 
 //COMMENTS
 
