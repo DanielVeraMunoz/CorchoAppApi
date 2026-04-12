@@ -13,6 +13,12 @@ StatsController:
 
 class StatsController extends Controller
 {
+    /**
+     * Community Stats
+     * 
+     * Returns statistics about the community.
+     * 
+     */
     public function communityStats(Request $request)
     {
         $communityId = $request->user()->community_id;
@@ -26,6 +32,12 @@ class StatsController extends Controller
         ], 200);
     }
 
+    /**
+     * Top Helpers
+     * 
+     * Returns a list of the top helpers in the community.
+     * 
+     */
     public function topHelpers(Request $request)
     {
         $communityId = $request->user()->community_id;
