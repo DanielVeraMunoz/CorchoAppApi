@@ -244,4 +244,25 @@ class CommentTest extends TestCase
             'content' => 'Comentario actualizado por admin',
         ]);
     }
+
+    public function test_authenticated_user_cannot_comment_on_completed_note()
+    {
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create(['is_completed' => true]);
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->postJson('/api/notes/' . $note->id . '/comments', [
+            'content' => 'Este es un comentario de prueba',
+        ]);
+
+        $response->assertStatus(400);
+         $this->assertDatabaseMissing('comments', [
+            'content' => 'Este es un comentario de prueba',
+            'note_id' => $note->id,
+            'user_id' => $user->id,
+        ]);
+    }
 }

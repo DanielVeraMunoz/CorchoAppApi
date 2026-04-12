@@ -26,18 +26,25 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request, $noteId)
     {
+        $note = \App\Models\Note::find($noteId);
+
+        if (!$note) {
+            return response()->json([
+                'message' => 'Nota no encontrada',
+            ], 404);
+        }
+
+        if ($note->is_completed) {
+            return response()->json([
+                'message' => 'No se pueden agregar comentarios a una nota completada',
+            ], 400);
+        }
 
         $comment = Comment::create([
             'note_id' => $noteId,
             'user_id' => $request->user()->id,
             'content' => $request->content,
         ]);
-
-        if ($noteId->is_completed === true) {
-            return response()->json([
-                'message' => 'No se pueden agregar comentarios a una nota completada',
-            ], 400);
-        }
 
         return response()->json([
             'message' => 'Comentario creado correctamente',
