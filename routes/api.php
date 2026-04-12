@@ -33,6 +33,8 @@ Route::delete('/notes/{id}', [NoteController::class, 'destroy'])->middleware('au
 
 Route::patch('/notes/{id}/complete', [NoteController::class, 'complete'])->middleware('auth:api');
 
+Route::patch('/notes/{id}/reopen', [NoteController::class, 'reopen'])->middleware('auth:api');
+
 
 //COMMENTS
 

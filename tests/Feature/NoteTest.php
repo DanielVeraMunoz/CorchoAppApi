@@ -464,4 +464,29 @@ class NoteTest extends TestCase
             'is_completed' => false,
         ]);
     }
+
+    public function test_admin_can_reopen_any_note()
+    {
+        $community = Community::factory()->create();
+        $admin = User::factory()->create(['community_id' => $community->id, 'role' => 'admin']);
+        $category = Category::factory()->create();
+        $note = Note::factory()->create([
+            'user_id' => $admin->id,
+            'category_id' => $category->id,
+            'is_completed' => true,
+        ]);
+
+        $token = $admin->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->patchJson('/api/notes/' . $note->id . '/reopen', ['is_completed' => false]);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('notes', [
+            'id' => $note->id,
+            'is_completed' => false,
+        ]);
+    }
 }
