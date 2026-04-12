@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
+
+use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -20,7 +22,11 @@ class CategoryTest extends TestCase
 
     public function test_user_and_admin_can_get_categories()
     {
-        $response = $this->get('/api/categories');
+        $user = \App\Models\User::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeader('Authorization', "Bearer $token")
+            ->get('/api/categories');
 
         $response->assertStatus(200)
             ->assertJsonStructure([

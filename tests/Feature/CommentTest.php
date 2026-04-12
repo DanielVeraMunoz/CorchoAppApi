@@ -25,7 +25,9 @@ class CommentTest extends TestCase
     {
 
         $user = \App\Models\User::factory()->create();
-        $note = \App\Models\Note::factory()->create();
+        $note = \App\Models\Note::factory()->create([
+            'is_completed' => false,
+        ]);
         $token = $user->createToken('auth_token')->accessToken;
 
         $response = $this->withHeaders([
@@ -46,7 +48,7 @@ class CommentTest extends TestCase
     public function test_unauthenticated_user_cannot_create_comment()
     {
 
-        $note = \App\Models\Note::factory()->create();
+        $note = \App\Models\Note::factory()->create(['is_completed' => false]);
 
         $response = $this->postJson('/api/notes/' . $note->id . '/comments', [
             'content' => 'Este es un comentario de prueba',
@@ -59,7 +61,7 @@ class CommentTest extends TestCase
     {
 
         $admin = \App\Models\User::factory()->create(['role' => 'admin']);
-        $note = \App\Models\Note::factory()->create();
+        $note = \App\Models\Note::factory()->create(['is_completed' => false]);
         $token = $admin->createToken('auth_token')->accessToken;
 
         $response = $this->withHeaders([
