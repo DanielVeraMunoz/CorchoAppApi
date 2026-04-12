@@ -5,6 +5,7 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+.scribe/endpoints.cache/03.yaml
 /.fleet
 /.idea
 /.nova

@@ -5,8 +5,19 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+ThankController:
+/**
+ * @group Thanks
+ */
+
+
 class ThankController extends Controller
 {
+    /**
+     * Create a thank
+     * 
+     * Create a new thank for a specific note and recipient. Returns the created thank.
+     */
     public function store(Request $request, $recipientId)
     {
 
@@ -50,6 +61,13 @@ class ThankController extends Controller
         ], 201);
     }
 
+    /**
+     * List all thanks for a user
+     * 
+     * Returns a list of all thanks received in a specific user.
+     * 
+     */
+
     public function index(Request $request, $userId)
     {
         $thanks = \App\Models\Thank::where('recipient_id', $userId)->with('giver')->get();
@@ -60,7 +78,12 @@ class ThankController extends Controller
         ], 200);
     }
 
-
+    /**
+     * Delete a thank
+     * 
+     * Delete an existing thank. Returns a success message.
+     * 
+     */
     public function destroy(Request $request, $id)
     {
         $thank = \App\Models\Thank::find($id);

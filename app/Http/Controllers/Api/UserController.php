@@ -6,8 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 
+UserController:
+/**
+ * @group Users
+ */
+
+
 class UserController extends Controller
 {
+        /**
+        * List all users
+        * 
+        * Return a list of all users in the community.
+        */
     public function index(Request $request)
     {
         $users = \App\Models\User::all();
@@ -18,6 +29,12 @@ class UserController extends Controller
         ], 200);
     }
 
+    /**
+     * Show a user
+     * 
+     * Return the details of a specific user.
+     * 
+     */
     public function show(Request $request, $id)
     {
         $user = \App\Models\User::find($id);
@@ -37,6 +54,12 @@ class UserController extends Controller
         ], 200);
     }
 
+    /**
+     * Update a user
+     * 
+     * Update the information of an existing user. Returns the updated user.
+     * 
+     */
     public function update(UpdateUserRequest $request, $id)
     {
         $user = \App\Models\User::find($id);
@@ -71,6 +94,13 @@ class UserController extends Controller
         ], 200);
     }
 
+
+    /**
+     * Delete a user
+     * 
+     * Delete an existing user. Returns a success message.
+     * 
+     */
     public function destroy(Request $request, $id)
     {
         $user = \App\Models\User::find($id);

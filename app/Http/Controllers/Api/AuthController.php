@@ -9,9 +9,21 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+AuthController:
+/**
+ * @group Auth
+ */
 
 class AuthController extends Controller
 {
+
+    /**
+     * Register
+     * 
+     * Register a new user with the provided information. Returns the created user and an access token.
+     * 
+     * @unauthenticated
+     */
 
     public function register(RegisterRequest $request)
     {
@@ -36,6 +48,14 @@ class AuthController extends Controller
         ], 201);
     }
 
+
+    /**
+     * Login
+     * 
+     * Login a user with the provided information. Returns the user and an access token.
+     * 
+     * @unauthenticated
+     */
     public function login(LoginRequest $request)
     {
 
@@ -60,7 +80,15 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout(Request $request){
+
+    /**
+     * Logout
+     * 
+     * Logout the authenticated user by revoking their access token. Returns a success message.
+     * 
+     */
+    public function logout(Request $request)
+    {
         $request->user()->token()->revoke();
 
         return response()->json([
