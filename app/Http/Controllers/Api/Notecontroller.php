@@ -39,8 +39,6 @@ class Notecontroller extends Controller
      * 
      * Return all notes from the authenticated user.
      */
-
-
     public function index(Request $request)
     {
         $notes = Note::where('user_id', $request->user()->id)->get();
@@ -67,6 +65,11 @@ class Notecontroller extends Controller
 
     }
 
+    /**
+     * Update a note
+     * 
+     * Update the title, description, category, or event date of an existing note. Returns the updated note.
+     */
     public function update(UpdateNoteRequest $request, $id){
         $note = Note::find($id);
 
@@ -94,6 +97,12 @@ class Notecontroller extends Controller
         ], 200);
     }   
 
+    /**
+     * Delete a note
+     * 
+     * Delete an existing note. Returns a success message.
+     * 
+     */
     public function destroy(Request $request, $id){
         $note = Note::find($id);
 

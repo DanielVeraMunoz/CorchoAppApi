@@ -81,7 +81,7 @@ class AuthController extends Controller
     }
 
 
-        /**
+    /**
      * Logout
      * 
      * Logout the authenticated user by revoking their access token. Returns a success message.
