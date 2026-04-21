@@ -47,7 +47,12 @@ class Notecontroller extends Controller
      */
     public function index(Request $request)
     {
-        $query = Note::where('user_id', $request->user()->id);
+        
+        $communityId = $request->user()->community_id;
+    
+        $query = Note::whereHas('user', function ($q) use ($communityId) {
+            $q->where('community_id', $communityId);
+        });
 
         $status = $request->query('status');
 
