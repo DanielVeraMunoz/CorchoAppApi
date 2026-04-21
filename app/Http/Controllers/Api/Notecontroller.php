@@ -78,7 +78,7 @@ class Notecontroller extends Controller
      */
     public function show(Request $request, $id)
     {
-        $note = Note::find($id);
+        $note = Note::with(['user', 'category'])->find($id);
 
         if (!$note) {
             return response()->json(
