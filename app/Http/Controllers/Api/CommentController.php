@@ -47,6 +47,7 @@ class CommentController extends Controller
         ]);
 
         return response()->json([
+            $comment->load('user'),
             'message' => 'Comentario creado correctamente',
             'data' => $comment,
         ], 201);
