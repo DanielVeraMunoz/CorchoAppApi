@@ -24,6 +24,7 @@ class StatsService
 
             'total_thanks' => Thank::whereHas('recipient', fn($q) => $q->where('community_id', $communityId))->count(),
 
+            'community_name' => \App\Models\Community::find($communityId)->name,
 
         ];
     }
