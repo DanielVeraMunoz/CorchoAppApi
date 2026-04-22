@@ -90,6 +90,8 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $user->load(['community']);
+
         return response()->json([
             'message' => 'Usuario actualizado correctamente',
             'data' => $user,
