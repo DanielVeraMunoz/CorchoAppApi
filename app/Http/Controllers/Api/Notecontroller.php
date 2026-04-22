@@ -128,6 +128,8 @@ class Notecontroller extends Controller
             'category_id' => $request->category_id,
         ]);
 
+        $note->load(['user', 'category']);
+
         return response()->json([
             'message' => 'Nota actualizada correctamente',
             'data' => $note,
