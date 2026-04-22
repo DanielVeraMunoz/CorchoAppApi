@@ -62,7 +62,7 @@ class Notecontroller extends Controller
             $query->where('is_completed', false);
         }
 
-        $notes = $query->with(['user', 'category'])->get();
+        $notes = $query->with(['user', 'category'])->withCount('comments')->get();
 
         return response()->json([
             'message' => 'Notas obtenidas correctamente',
