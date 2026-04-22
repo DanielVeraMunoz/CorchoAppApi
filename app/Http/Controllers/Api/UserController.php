@@ -48,6 +48,8 @@ class UserController extends Controller
             );
         }
 
+        $user->load(['community']);
+
         return response()->json([
             'message' => 'Usuario obtenido correctamente',
             'data' => $user,
