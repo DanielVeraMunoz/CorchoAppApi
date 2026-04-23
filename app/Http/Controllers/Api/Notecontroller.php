@@ -203,6 +203,8 @@ class Notecontroller extends Controller
 
         $note->update(['is_completed' => true]);
 
+        $note->load(['user', 'category']);
+
         return response()->json([
             'message' => 'Nota marcada como completada',
             'data' => $note,
@@ -237,6 +239,8 @@ class Notecontroller extends Controller
         }
 
         $note->update(['is_completed' => false]);
+
+        $note->load(['user', 'category']);
 
         return response()->json([
             'message' => 'Nota reabierta correctamente',
