@@ -14,11 +14,11 @@ UserController:
 
 class UserController extends Controller
 {
-        /**
-        * List all users
-        * 
-        * Return a list of all users in the community.
-        */
+    /**
+     * List all users
+     * 
+     * Return a list of all users in the community.
+     */
     public function index(Request $request)
     {
         $users = \App\Models\User::all();
@@ -84,13 +84,13 @@ class UserController extends Controller
             );
         }
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'floor' => $request->floor,
-            'door' => $request->door,
-            'password' => bcrypt($request->password),
-        ]);
+        $data = $request->only(['name', 'email', 'floor', 'door']);
+
+        if ($request->filled('password')) {
+            $data['password'] = $request->password;
+        }
+
+        $user->update($data);
 
         $user->load(['community']);
 
