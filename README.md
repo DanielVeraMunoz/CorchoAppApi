@@ -1,58 +1,267 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CorchoApp API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+REST API backend for **CorchoApp**, a neighborhood community board application where residents can post notes, offer help, leave comments, and thank their neighbors.
 
-## About Laravel
+Built with **Laravel 13** + **Laravel Passport** (OAuth2).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Table of Contents
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Data Model](#data-model)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [API Endpoints](#api-endpoints)
+- [Roles & Permissions](#roles--permissions)
+- [Seed Users](#seed-users)
+- [Running Tests](#running-tests)
+- [Project Structure](#project-structure)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Layer | Technology |
+|---|---|
+| Language | PHP 8.3+ |
+| Framework | Laravel 13 |
+| Authentication | Laravel Passport (OAuth2) |
+| Database | MySQL |
+| Testing | PHPUnit |
+| Documentation | Scribe |
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## Features
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- Token-based authentication via **Laravel Passport** (OAuth2)
+- Full CRUD for **Notes** and **Users**
+- Partial CRUD for **Comments** (list, create, update, delete — no single-record fetch)
+- **Note lifecycle**: active → completed → reopened
+- **Thanks system**: note authors can thank the neighbors who helped them
+- **Role-based access control**: `admin` and `user` roles
+- **Community stats** and **top helpers** leaderboard
+- **Categories** and **Communities** are read-only — predefined by the system, not managed via API
+- 56 passing tests
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
+## Data Model
+
+```
+Community
+  └── has many Users
+
+User (belongs to Community, has role: admin|user)
+  ├── has many Notes
+  ├── has many Comments
+  ├── has many Thanks (given)
+  └── has many Thanks (received)
+
+Note (belongs to User, belongs to Category)
+  ├── has many Comments
+  └── has many Thanks
+
+Comment (belongs to Note, belongs to User)
+
+Thank (belongs to Note, giver: User, recipient: User)
+
+Category (predefined, read-only)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Getting Started
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Requirements
 
-## Code of Conduct
+- PHP >= 8.3
+- Composer
+- MySQL
+- XAMPP / Laravel Valet / any local server
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Installation
 
-## Security Vulnerabilities
+```bash
+# Clone the repository
+git clone <repo-url>
+cd CorchoAppApi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Install dependencies
+composer install
 
-## License
+# Copy environment file and configure it
+cp .env.example .env
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Generate app key
+php artisan key:generate
+
+# Run migrations and seed the database
+php artisan migrate:fresh --seed
+
+# Install Passport (generates OAuth keys)
+php artisan passport:install
+
+# Start the development server
+php artisan serve
+```
+
+The API will be available at `http://localhost:8000/api`.
+
+---
+
+## Environment Variables
+
+Create a `.env` file based on `.env.example`. Key values to configure:
+
+```env
+APP_NAME=CorchoApp
+APP_URL=http://localhost:8000   # change to your production URL when deploying
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=corchoapp          # name of your MySQL database
+DB_USERNAME=root               # your MySQL user
+DB_PASSWORD=                   # your MySQL password (empty by default in XAMPP)
+
+PASSPORT_PERSONAL_ACCESS_CLIENT_ID=      # filled after passport:install
+PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=  # filled after passport:install
+```
+
+- `APP_KEY` is generated automatically by `php artisan key:generate` — do not set it manually.
+- `PASSPORT_*` values are generated by `php artisan passport:install`. Copy the **Personal Access Client** ID and secret from the output into these variables.
+
+---
+
+## API Endpoints
+
+All endpoints require a `Bearer` token in the `Authorization` header, except **register** and **login**.
+
+### Authentication
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| POST | `/api/register` | Register a new user | No |
+| POST | `/api/login` | Login and get access token | No |
+| DELETE | `/api/logout` | Revoke current token | Yes |
+
+### Notes
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/notes` | List all notes |
+| POST | `/api/notes` | Create a new note |
+| GET | `/api/notes/{id}` | Get a single note |
+| PUT | `/api/notes/{id}` | Update a note |
+| DELETE | `/api/notes/{id}` | Delete a note |
+| PATCH | `/api/notes/{id}/complete` | Mark note as completed |
+| PATCH | `/api/notes/{id}/reopen` | Reopen a completed note |
+
+### Comments
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/notes/{id}/comments` | List comments for a note |
+| POST | `/api/notes/{id}/comments` | Add a comment to a note |
+| PUT | `/api/comments/{id}` | Update a comment |
+| DELETE | `/api/comments/{id}` | Delete a comment |
+
+> Comments cannot be added to completed notes.
+
+### Thanks
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/users/{id}/thanks` | List thanks received by a user |
+| POST | `/api/users/{id}/thanks` | Give thanks to a user (`body: { note_id }`) |
+| DELETE | `/api/thanks/{id}` | Remove a thanks |
+
+> Only the note author can give thanks. The recipient is the neighbor who helped.
+
+### Users
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/users` | List all users in the community |
+| GET | `/api/users/{id}` | Get a user profile |
+| PUT | `/api/users/{id}` | Update a user profile |
+| DELETE | `/api/users/{id}` | Delete a user account |
+
+### Stats
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/stats/community` | General community stats (notes, comments, thanks) |
+| GET | `/api/stats/top-helpers` | Top users ranked by thanks received |
+
+### Categories
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/categories` | List all predefined categories |
+
+---
+
+## Roles & Permissions
+
+| Action | `user` | `admin` |
+|---|---|---|
+| Edit / delete own notes | Yes | Yes |
+| Edit / delete any note | No | Yes |
+| Edit / delete own comments | Yes | Yes |
+| Edit / delete any comment | No | Yes |
+| Update own profile | Yes | Yes |
+| Update / delete any user | No | Yes |
+| View all users | Yes | Yes |
+
+---
+
+## Seed Users
+
+After running `php artisan migrate:fresh --seed`, the following test accounts are available:
+
+| Email | Password | Role |
+|---|---|---|
+| admin@corcho.com | password | admin |
+| demo@corcho.com | password | user |
+| john@corcho.com | password | user |
+| jane@corcho.com | password | user |
+
+---
+
+## Running Tests
+
+```bash
+php artisan test
+```
+
+The test suite covers authentication, CRUD operations, role-based access, note lifecycle, thanks system, and stats — **56 tests** in total.
+
+---
+
+## Project Structure
+
+```
+app/
+├── Http/
+│   ├── Controllers/Api/   # AuthController, NoteController, CommentController...
+│   └── Middleware/        # IsAdmin
+├── Models/                # User, Note, Comment, Thank, Category, Community
+└── Services/              # StatsService (Service Layer pattern)
+
+database/
+├── migrations/
+└── seeders/
+
+routes/
+└── api.php
+
+tests/
+└── Feature/               # PHPUnit feature tests
+```
+
+---
+
