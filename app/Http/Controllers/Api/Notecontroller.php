@@ -14,7 +14,7 @@ NoteController:
  */
 
 
-class Notecontroller extends Controller
+class NoteController extends Controller
 {
     /**
      * Create a note
