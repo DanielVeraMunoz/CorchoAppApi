@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = \App\Models\User::all();
+        $users = \App\Models\User::where('community_id', $request->user()->community_id)->get();    
 
         return response()->json([
             'message' => 'Usuarios obtenidos correctamente',
