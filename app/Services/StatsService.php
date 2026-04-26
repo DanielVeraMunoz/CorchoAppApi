@@ -45,6 +45,7 @@ class StatsService
                 'user_id' => $user->id,
                 'name' => $user->name,
                 'thanks_count' => $user->received_thanks_count,
+                'role' => $user->role,
             ];
         }
 
