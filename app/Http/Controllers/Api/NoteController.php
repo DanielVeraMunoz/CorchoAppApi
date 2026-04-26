@@ -126,6 +126,7 @@ class NoteController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
+            'event_date' => $request->event_date,
         ]);
 
         $note->load(['user', 'category']);
