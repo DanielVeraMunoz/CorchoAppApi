@@ -8,7 +8,7 @@ WORKDIR /app
 RUN --mount=type=bind,source=composer.json,target=composer.json \
     --mount=type=bind,source=composer.lock,target=composer.lock \
     --mount=type=cache,target=/tmp/cache \
-    composer install --no-dev --no-interaction
+    composer install --no-dev --no-interaction --no-scripts
 
 # Stage 2: final image with PHP + Apache
 FROM php:8.3-apache AS final
