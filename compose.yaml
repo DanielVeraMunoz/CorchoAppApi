@@ -20,7 +20,7 @@ services:
     # Environment variables passed to Laravel (override .env inside the container)
     environment:
       APP_ENV: local
-      APP_KEY: base64:PLACEHOLDER
+      APP_KEY: base64:GWsdzgPAh5Tx7V1Rsmyw6I/3xQUTcLFvUQBJ/ilRxOQ=
       DB_CONNECTION: mysql
       DB_HOST: db        # name of the db service below — NOT 127.0.0.1
       DB_PORT: 3306

@@ -4,9 +4,6 @@
 set -e
 # Si cualquier comando falla, el script para inmediatamente (no sigue adelante)
 
-php artisan key:generate --force
-# Genera la APP_KEY de Laravel. Sin esta clave Laravel no arranca
-
 php artisan migrate:fresh --seed --force
 # Borra todas las tablas, las vuelve a crear y mete los datos de prueba (seeders)
 

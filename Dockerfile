@@ -15,7 +15,7 @@ WORKDIR /app
 RUN --mount=type=bind,source=composer.json,target=composer.json \
     --mount=type=bind,source=composer.lock,target=composer.lock \
     --mount=type=cache,target=/tmp/cache \
-    composer install --no-dev --no-interaction --no-scripts
+    composer install --no-interaction --no-scripts
 
 
 # ─── STAGE 2: imagen final con PHP + Apache ───────────────────────────────────
@@ -50,6 +50,11 @@ COPY --from=deps /app/vendor/ /var/www/html/vendor
 
 # Copia todo el código de la app dentro del contenedor
 COPY ./ /var/www/html
+
+# Crea el .env a partir del .env.example y da permisos de escritura
+RUN cp /var/www/html/.env.example /var/www/html/.env \
+    && chown www-data:www-data /var/www/html/.env \
+    && chmod 664 /var/www/html/.env
 
 # Da permisos de escritura a Apache sobre las carpetas que Laravel necesita escribir
 # storage/: logs, caché de vistas, archivos subidos
