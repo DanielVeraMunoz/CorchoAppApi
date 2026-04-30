@@ -13,13 +13,37 @@ services:
       context: .
     ports:
       - 9000:80
+    # Wait for MySQL to be healthy before starting Laravel
+    depends_on:
+      db:
+        condition: service_healthy
+    # Environment variables passed to Laravel (override .env inside the container)
+    environment:
+      APP_ENV: local
+      APP_KEY: base64:PLACEHOLDER
+      DB_CONNECTION: mysql
+      DB_HOST: db        # name of the db service below — NOT 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: corchoapp
+      DB_USERNAME: root
+      DB_PASSWORD: secret
 
-# The commented out section below is an example of how to define a PostgreSQL
-# database that your application can use. `depends_on` tells Docker Compose to
-# start the database before your application. The `db-data` volume persists the
-# database data between container restarts. The `db-password` secret is used
-# to set the database password. You must create `db/password.txt` and add
-# a password of your choosing to it before running `docker-compose up`.
+  # MySQL service — downloaded from Docker Hub, no Dockerfile needed
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: corchoapp
+    ports:
+      - 3307:3306        # 3307 on your Mac to avoid conflict with XAMPP's MySQL
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+# The commented out section below is the original example from docker init (PostgreSQL).
+# We replaced it with MySQL above, but keeping it here for reference.
 #     depends_on:
 #       db:
 #         condition: service_healthy
@@ -46,4 +70,3 @@ services:
 # secrets:
 #   db-password:
 #     file: db/password.txt
-
