@@ -59,8 +59,7 @@ RUN cp /var/www/html/.env.example /var/www/html/.env \
 # Da permisos de escritura a Apache sobre las carpetas que Laravel necesita escribir
 # storage/: logs, caché de vistas, archivos subidos
 # bootstrap/cache/: caché de configuración
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html
 
 # Copia el script de arranque y le da permisos de ejecución
 COPY entrypoint.sh /entrypoint.sh
