@@ -12,10 +12,8 @@ WORKDIR /app
 # --mount=bind: lee composer.json y composer.lock sin copiarlos dentro del contenedor
 # --mount=cache: guarda los paquetes descargados en caché para no volver a descargarlos
 # --no-scripts: no ejecuta scripts post-instalación (artisan no existe en este stage)
-RUN --mount=type=bind,source=composer.json,target=composer.json \
-    --mount=type=bind,source=composer.lock,target=composer.lock \
-    --mount=type=cache,target=/tmp/cache \
-    composer install --no-interaction --no-scripts
+COPY composer.json composer.lock ./
+RUN composer install --no-interaction --no-scripts
 
 
 # ─── STAGE 2: imagen final con PHP + Apache ───────────────────────────────────
