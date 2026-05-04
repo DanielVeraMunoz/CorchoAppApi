@@ -20,6 +20,7 @@ services:
     # Environment variables passed to Laravel (override .env inside the container)
     environment:
       APP_ENV: local
+      APP_URL: http://localhost:9000
       APP_KEY: base64:REPLACE_WITH_YOUR_OWN_KEY
       DB_CONNECTION: mysql
       DB_HOST: db        # name of the db service below — NOT 127.0.0.1
