@@ -1,22 +1,59 @@
-### Building and running your application
+# CorchoApp API — Docker
 
-When you're ready, start your application by running:
-`docker compose up --build`.
+## Requisitos
 
-Your application will be available at http://localhost:9000.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado y corriendo
 
-### PHP extensions
-If your application requires specific PHP extensions to run, they will need to be added to the Dockerfile. Follow the instructions and example in the Dockerfile to add them.
+---
 
-### Deploying your application to the cloud
+## Primera vez (setup inicial)
 
-First, build your image, e.g.: `docker build -t myapp .`.
-If your cloud uses a different CPU architecture than your development
-machine (e.g., you are on a Mac M1 and your cloud provider is amd64),
-you'll want to build the image for that platform, e.g.:
-`docker build --platform=linux/amd64 -t myapp .`.
+**1. Arranca los contenedores:**
+```bash
+docker compose up --build
+```
 
-Then, push it to your registry, e.g. `docker push myregistry.com/myapp`.
+**2. Genera el APP_KEY** (en otra pestaña del terminal):
+```bash
+docker compose exec server php artisan key:generate --show
+```
 
-Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
-docs for more detail on building and pushing.
+Copia el resultado (algo como `base64:xxxxxxxx=`) y pégalo en `compose.yaml`:
+```yaml
+APP_KEY: base64:xxxxxxxx=
+```
+
+**3. Reinicia:**
+```bash
+docker compose down
+docker compose up
+```
+
+La API estará disponible en `http://localhost:9000/api`.
+
+---
+
+## Arranque normal (después del setup)
+
+```bash
+docker compose up
+```
+
+Cada vez que arranca, el contenedor ejecuta automáticamente:
+- `migrate:fresh --seed` — recrea las tablas y mete datos de prueba
+- `passport:keys` — genera las claves OAuth
+
+---
+
+## Parar
+
+```bash
+docker compose down
+```
+
+---
+
+## ⚠️ Importante: APP_KEY y GitHub
+
+No subas el `APP_KEY` real a un repositorio público.  
+Cada persona que clone el proyecto debe generar su propia clave (paso 2).
