@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('communities', function (Blueprint $table) {
-            $table->string('invite_code')->unique()->nullable()->after('name');
+            $table->string('invite_code')->unique()->after('name');
         });
     }
 
