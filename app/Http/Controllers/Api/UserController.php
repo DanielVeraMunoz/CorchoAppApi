@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = \App\Models\User::find($id);
+        $user = \App\Models\User::where('id', $id)->where('community_id', $request->user()->community_id)->first();
 
         if (!$user) {
             return response()->json(
@@ -64,7 +64,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        $user = \App\Models\User::find($id);
+        $user = \App\Models\User::where('id', $id)->where('community_id', $request->user()->community_id)->first();
 
         if (!$user) {
             return response()->json(
@@ -109,7 +109,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = \App\Models\User::find($id);
+        $user = \App\Models\User::where('id', $id)->where('community_id', $request->user()->community_id)->first();
 
         if (!$user) {
             return response()->json(

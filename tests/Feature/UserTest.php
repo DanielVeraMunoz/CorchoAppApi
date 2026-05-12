@@ -151,8 +151,9 @@ class UserTest extends TestCase
 
     public function test_authenticated_admin_can_update_other_profile()
     {
-        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
-        $user = \App\Models\User::factory()->create();
+        $community = \App\Models\Community::factory()->create();
+        $admin = \App\Models\User::factory()->create(['role' => 'admin', 'community_id' => $community->id]);
+        $user = \App\Models\User::factory()->create(['community_id' => $community->id]);
         $token = $admin->createToken('auth_token')->accessToken;
 
         $response = $this->withHeaders([
@@ -209,8 +210,9 @@ class UserTest extends TestCase
 
     public function test_authenticated_user_cant_delete_other_profile()
     {
-        $user1 = \App\Models\User::factory()->create();
-        $user2 = \App\Models\User::factory()->create();
+        $community = \App\Models\Community::factory()->create();
+        $user1 = \App\Models\User::factory()->create(['community_id' => $community->id]);
+        $user2 = \App\Models\User::factory()->create(['community_id' => $community->id]);
         $token = $user1->createToken('auth_token')->accessToken;
 
         $response = $this->withHeaders([
@@ -226,8 +228,9 @@ class UserTest extends TestCase
 
     public function test_authenticated_admin_can_delete_other_profile()
     {
-        $admin = \App\Models\User::factory()->create(['role' => 'admin']);
-        $user = \App\Models\User::factory()->create();
+        $community = \App\Models\Community::factory()->create();
+        $admin = \App\Models\User::factory()->create(['role' => 'admin', 'community_id' => $community->id]);
+        $user = \App\Models\User::factory()->create(['community_id' => $community->id]);
         $token = $admin->createToken('auth_token')->accessToken;
 
         $response = $this->withHeaders([
