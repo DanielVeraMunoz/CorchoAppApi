@@ -27,12 +27,13 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        $community = \App\Models\Community::where('invite_code', $request->invite_code)->first();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'community_id' => $request->community_id,
+            'community_id' => $community->id,
             'floor' => $request->floor,
             'door' => $request->door,
             'role' => 'user',
