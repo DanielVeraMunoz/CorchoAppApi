@@ -130,12 +130,7 @@ class NoteController extends Controller
             );
         }
 
-        $note->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'event_date' => $request->event_date,
-        ]);
+        $note->update($request->only(['title', 'description', 'category_id', 'event_date']));
 
         $note->load(['user', 'category']);
 
