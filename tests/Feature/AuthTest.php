@@ -15,14 +15,14 @@ class AuthTest extends TestCase
     public function test_user_can_register(): void
     {
 
-        $community = Community::factory()->create();
+        $community = Community::factory()->create(['invite_code' => 'TEST-1234']);
 
         $data = [
             'name' => 'Test Register',
             'email' => 'test@example.com',
             'password' => 'password123',
             'password_confirmation' => 'password123',
-            'community_id' => $community->id,
+            'invite_code' => 'TEST-1234',
             'floor' => '2',
             'door' => 'A',
         ];

@@ -18,6 +18,7 @@ class CommunityFactory extends Factory
     public function definition(): array
     {
         return [
+            'invite_code' => strtoupper($this->faker->bothify('????-####')),
             'name' => $this->faker->company(),
             'address' => $this->faker->address(),
             'postal_code' => $this->faker->postcode(),
