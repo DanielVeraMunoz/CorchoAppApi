@@ -20,8 +20,8 @@ class AuthTest extends TestCase
         $data = [
             'name' => 'Test Register',
             'email' => 'test@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password' => 'Password123',
+            'password_confirmation' => 'Password123',
             'invite_code' => 'TEST-1234',
             'floor' => '2',
             'door' => 'A',

@@ -25,10 +25,10 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'],
             'invite_code' => ['required', 'string', 'exists:communities,invite_code'],
-            'floor' => ['required', 'string'],
-            'door' => ['required', 'string'],
+            'floor' => ['required', 'string', 'max:10'],
+            'door' => ['required', 'string', 'max:10'],
         ];
     }
 }
