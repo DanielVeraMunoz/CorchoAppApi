@@ -47,9 +47,9 @@ class NoteController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $communityId = $request->user()->community_id;
-    
+
         $query = Note::whereHas('user', function ($q) use ($communityId) {
             $q->where('community_id', $communityId);
         });
@@ -78,7 +78,11 @@ class NoteController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $note = Note::with(['user', 'category'])->find($id);
+        $communityId = $request->user()->community_id;
+
+        $note = Note::whereHas('user', function ($q) use ($communityId) {
+            $q->where('community_id', $communityId);
+        })->with(['user', 'category'])->find($id);
 
         if (!$note) {
             return response()->json(
@@ -102,7 +106,11 @@ class NoteController extends Controller
      */
     public function update(UpdateNoteRequest $request, $id)
     {
-        $note = Note::find($id);
+        $communityId = $request->user()->community_id;
+
+        $note = Note::whereHas('user', function ($q) use ($communityId) {
+            $q->where('community_id', $communityId);
+        })->find($id);
 
         if (!$note) {
             return response()->json(
@@ -212,7 +220,7 @@ class NoteController extends Controller
         ], 200);
     }
 
-        /**
+    /**
      * Reopen a note
      * 
      * Reopen a completed note. Returns the updated note.
