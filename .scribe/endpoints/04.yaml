@@ -35,7 +35,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: '*'
+          vary: Origin
         description: null
     responseFields: []
     auth:
@@ -91,7 +91,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: '*'
+          vary: Origin
         description: null
     responseFields: []
     auth:
@@ -163,12 +163,12 @@ endpoints:
         custom: []
         name: password
         description: 'Must be at least 8 characters.'
-        required: true
+        required: false
         example: '-0pBNvYgxw'
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         deprecated: false
     cleanBodyParameters:
       name: b

@@ -43,7 +43,7 @@ class NoteController extends Controller
     /**
      * List all notes
      * 
-     * Return all notes from the authenticated user.
+     * Return all notes from the community.
      */
     public function index(Request $request)
     {
