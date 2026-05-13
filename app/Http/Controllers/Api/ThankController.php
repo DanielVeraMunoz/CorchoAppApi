@@ -42,6 +42,20 @@ class ThankController extends Controller
             ], 404);
         }
 
+        $recipient = \App\Models\User::find($recipientId);
+
+        if(!$recipient) {
+            return response()->json([
+                'message' => 'Destinatario no encontrado',
+            ], 404);
+        }
+
+        if($recipient->community_id !== $request->user()->community_id) {
+            return response()->json([
+                'message' => 'El destinatario debe ser parte de la misma comunidad.',
+            ], 422);
+        }
+
         if ($note->user_id !== $request->user()->id) {
             return response()->json([
                 'message' => 'Solo el autor de la nota puede agradecer a otros usuarios por su aporte.',
