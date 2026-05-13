@@ -51,7 +51,7 @@ endpoints:
       password:
         custom: []
         name: password
-        description: 'Must be at least 8 characters.'
+        description: 'Must match the regex /^(?=.*[A-Z])(?=.*\d).+$/. Must be at least 8 characters.'
         required: true
         example: '/kXaz<m5L[)~=NG5a:'
         type: string
@@ -59,10 +59,10 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      community_id:
+      invite_code:
         custom: []
-        name: community_id
-        description: 'The <code>id</code> of an existing record in the communities table.'
+        name: invite_code
+        description: 'The <code>invite_code</code> of an existing record in the communities table.'
         required: true
         example: architecto
         type: string
@@ -73,9 +73,9 @@ endpoints:
       floor:
         custom: []
         name: floor
-        description: ''
+        description: 'Must not be greater than 10 characters.'
         required: true
-        example: architecto
+        example: ngzmiy
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -84,9 +84,9 @@ endpoints:
       door:
         custom: []
         name: door
-        description: ''
+        description: 'Must not be greater than 10 characters.'
         required: true
-        example: architecto
+        example: vdljni
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -96,9 +96,9 @@ endpoints:
       name: bngzmiyvdljnikhw
       email: cormier.nick@example.com
       password: '/kXaz<m5L[)~=NG5a:'
-      community_id: architecto
-      floor: architecto
-      door: architecto
+      invite_code: architecto
+      floor: ngzmiy
+      door: vdljni
     fileParameters: []
     responses: []
     responseFields: []

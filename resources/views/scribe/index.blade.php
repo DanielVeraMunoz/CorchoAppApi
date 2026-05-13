@@ -723,7 +723,7 @@
 
         </div>
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
-            Last updated: April 13, 2026
+            Last updated: May 13, 2026
         </div>
 
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
@@ -934,7 +934,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                                                                                 </div>
                                         </div>
                 <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
-            <p>Must be at least 8 characters.</p>
+            <p>Must match the regex /^(?=.<em>[A-Z])(?=.</em>\d).+$/. Must be at least 8 characters.</p>
         </div>
                                             <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
                 <span>Example:</span> <!-- <span> important for spacing -->
@@ -954,7 +954,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
         <div class="sl-flex sl-items-center sl-max-w-full">
                                         <div class="sl-flex sl-items-baseline sl-text-base">
-                    <div class="sl-font-mono sl-font-semibold sl-mr-2">community_id</div>
+                    <div class="sl-font-mono sl-font-semibold sl-mr-2">invite_code</div>
                                             <span class="sl-truncate sl-text-muted">string</span>
                                     </div>
                                             <div class="sl-flex-1 sl-h-px sl-mx-3"></div>
@@ -963,7 +963,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                                                                                 </div>
                                         </div>
                 <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
-            <p>The <code>id</code> of an existing record in the communities table.</p>
+            <p>The <code>invite_code</code> of an existing record in the communities table.</p>
         </div>
                                             <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
                 <span>Example:</span> <!-- <span> important for spacing -->
@@ -991,11 +991,14 @@ You can switch the language used with the tabs at the top right (or from the nav
                                                             <span class="sl-ml-2 sl-text-warning">required</span>
                                                                                 </div>
                                         </div>
+                <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
+            <p>Must not be greater than 10 characters.</p>
+        </div>
                                             <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        architecto
+                        ngzmiy
                     </div>
                 </div>
             </div>
@@ -1017,11 +1020,14 @@ You can switch the language used with the tabs at the top right (or from the nav
                                                             <span class="sl-ml-2 sl-text-warning">required</span>
                                                                                 </div>
                                         </div>
+                <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
+            <p>Must not be greater than 10 characters.</p>
+        </div>
                                             <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        architecto
+                        vdljni
                     </div>
                 </div>
             </div>
@@ -1118,9 +1124,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     "name": "bngzmiyvdljnikhw",
     "email": "cormier.nick@example.com",
     "password": "\/kXaz\u003Cm5L[)~=NG5a:",
-    "community_id": "architecto",
-    "floor": "architecto",
-    "door": "architecto"
+    "invite_code": "architecto",
+    "floor": "ngzmiy",
+    "door": "vdljni"
 }</div>
                             </div>
                                             </div>
@@ -1219,9 +1225,9 @@ You can check the Dev Tools console for debugging information.</p>
     \"name\": \"bngzmiyvdljnikhw\",
     \"email\": \"cormier.nick@example.com\",
     \"password\": \"\\/kXaz&lt;m5L[)~=NG5a:\",
-    \"community_id\": \"architecto\",
-    \"floor\": \"architecto\",
-    \"door\": \"architecto\"
+    \"invite_code\": \"architecto\",
+    \"floor\": \"ngzmiy\",
+    \"door\": \"vdljni\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -1243,9 +1249,9 @@ let body = {
     "name": "bngzmiyvdljnikhw",
     "email": "cormier.nick@example.com",
     "password": "\/kXaz&lt;m5L[)~=NG5a:",
-    "community_id": "architecto",
-    "floor": "architecto",
-    "door": "architecto"
+    "invite_code": "architecto",
+    "floor": "ngzmiy",
+    "door": "vdljni"
 };
 
 fetch(url, {
@@ -2319,7 +2325,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -3227,7 +3233,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -4302,7 +4308,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-13T08:45:07
+                        2026-05-13T20:41:40
                     </div>
                 </div>
             </div>
@@ -4435,7 +4441,7 @@ fetch(url, {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-13T08:45:07"
+    "event_date": "2026-05-13T20:41:40"
 }</div>
                             </div>
                                             </div>
@@ -4535,7 +4541,7 @@ You can check the Dev Tools console for debugging information.</p>
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
     \"category_id\": \"architecto\",
-    \"event_date\": \"2026-04-13T08:45:07\"
+    \"event_date\": \"2026-05-13T20:41:40\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -4558,7 +4564,7 @@ let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": "architecto",
-    "event_date": "2026-04-13T08:45:07"
+    "event_date": "2026-05-13T20:41:40"
 };
 
 fetch(url, {
@@ -4607,7 +4613,7 @@ fetch(url, {
                                                                                     </div>
         </div>
 
-        <p>Return all notes from the authenticated user.</p>
+        <p>Return all notes from the community.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -4941,7 +4947,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -5387,7 +5393,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -5622,7 +5628,7 @@ access-control-allow-origin: *</code></pre>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        2026-04-13T08:45:08
+                        2026-05-13T20:41:41
                     </div>
                 </div>
             </div>
@@ -5788,7 +5794,7 @@ access-control-allow-origin: *</code></pre>
     "title": "b",
     "description": "Eius et animi quos velit et.",
     "category_id": null,
-    "event_date": "2026-04-13T08:45:08"
+    "event_date": "2026-05-13T20:41:41"
 }</div>
                             </div>
                                             </div>
@@ -5887,7 +5893,7 @@ You can check the Dev Tools console for debugging information.</p>
     --data "{
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"event_date\": \"2026-04-13T08:45:08\"
+    \"event_date\": \"2026-05-13T20:41:41\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -5909,7 +5915,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
-    "event_date": "2026-04-13T08:45:08"
+    "event_date": "2026-05-13T20:41:41"
 };
 
 fetch(url, {
@@ -7461,7 +7467,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -7842,7 +7848,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -8781,7 +8787,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -9557,7 +9563,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -10003,7 +10009,7 @@ fetch(url, {
                                                 </summary>
                                                                                                 <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: *</code></pre>
+vary: Origin</code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
@@ -10224,10 +10230,6 @@ access-control-allow-origin: *</code></pre>
                     <div class="sl-font-mono sl-font-semibold sl-mr-2">password</div>
                                             <span class="sl-truncate sl-text-muted">string</span>
                                     </div>
-                                            <div class="sl-flex-1 sl-h-px sl-mx-3"></div>
-                        <div class="sl-flex sl-items-center">
-                                                            <span class="sl-ml-2 sl-text-warning">required</span>
-                                                                                </div>
                                         </div>
                 <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
             <p>Must be at least 8 characters.</p>
