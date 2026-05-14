@@ -1,6 +1,6 @@
 # CorchoApp API
 
-🔗 **Live demo:** https://corcho-api-front.vercel.app/
+**API:** https://web-production-0771b3.up.railway.app/api · **Frontend:** https://corcho-api-front.vercel.app
 
 REST API backend for **CorchoApp**, a neighborhood community board application where residents can post notes, offer help, leave comments, and thank their neighbors.
 
