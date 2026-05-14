@@ -44,7 +44,7 @@ Built with **Laravel 13** + **Laravel Passport** (OAuth2).
 - **Role-based access control**: `admin` and `user` roles
 - **Community stats** and **top helpers** leaderboard
 - **Categories** and **Communities** are read-only — predefined by the system, not managed via API
-- 56 passing tests
+- **69 passing PHPUnit tests**
 
 ---
 
@@ -238,7 +238,18 @@ After running `php artisan migrate:fresh --seed`, the following test accounts ar
 php artisan test
 ```
 
-The test suite covers authentication, CRUD operations, role-based access, note lifecycle, thanks system, and stats — **56 tests** in total.
+The test suite has **69 tests** covering:
+
+| Area | What's tested |
+|---|---|
+| Auth | Register, login, logout, wrong password, weak password, invalid invite code |
+| Notes | CRUD, community isolation (can't see other community's notes), role access, complete/reopen permissions, title validation |
+| Comments | Create, list, update, delete — with owner and admin checks, unauthenticated access, commenting on completed notes |
+| Thanks | Give thanks, prevent self-thanks, prevent cross-community thanks, unauthenticated access |
+| Stats | Community stats, top helpers, unauthenticated access |
+| Categories | List categories, unauthenticated access |
+
+All tests use `RefreshDatabase` (isolated, no side effects) and real Passport tokens — no mocks.
 
 ---
 
