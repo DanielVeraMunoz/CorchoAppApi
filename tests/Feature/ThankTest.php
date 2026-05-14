@@ -13,9 +13,9 @@ class ThankTest extends TestCase
 
     public function test_authenticated_user_can_thank_a_user()
     {
-
-        $author = \App\Models\User::factory()->create();
-        $recipient = \App\Models\User::factory()->create();
+        $community = \App\Models\Community::factory()->create();
+        $author = \App\Models\User::factory()->create(['community_id' => $community->id]);
+        $recipient = \App\Models\User::factory()->create(['community_id' => $community->id]);
         $note = \App\Models\Note::factory()->create(['user_id' => $author->id]);
         $token = $author->createToken('auth_token')->accessToken;
 
@@ -125,6 +125,56 @@ class ThankTest extends TestCase
         $this->assertDatabaseHas('thanks', [
             'id' => $thank->id,
         ]);
+    }
+
+    public function test_user_cannot_thank_themselves()
+    {
+        $community = \App\Models\Community::factory()->create();
+        $user = \App\Models\User::factory()->create(['community_id' => $community->id]);
+        $note = \App\Models\Note::factory()->create(['user_id' => $user->id]);
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->postJson('/api/users/' . $user->id . '/thanks', [
+            'note_id' => $note->id,
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJson(['message' => 'No puedes agradecerte a ti mismo.']);
+    }
+
+    public function test_user_cannot_thank_user_from_different_community()
+    {
+        $community1 = \App\Models\Community::factory()->create();
+        $community2 = \App\Models\Community::factory()->create();
+        $author = \App\Models\User::factory()->create(['community_id' => $community1->id]);
+        $recipient = \App\Models\User::factory()->create(['community_id' => $community2->id]);
+        $note = \App\Models\Note::factory()->create(['user_id' => $author->id]);
+        $token = $author->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->postJson('/api/users/' . $recipient->id . '/thanks', [
+            'note_id' => $note->id,
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJson(['message' => 'El destinatario debe ser parte de la misma comunidad.']);
+    }
+
+    public function test_unauthenticated_user_cannot_create_thank()
+    {
+        $user = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+
+        $response = $this->postJson('/api/users/' . $user->id . '/thanks', [
+            'note_id' => $note->id,
+        ]);
+
+        $response->assertStatus(401);
     }
 
     public function test_authenticated_admin_can_delete_any_thank()

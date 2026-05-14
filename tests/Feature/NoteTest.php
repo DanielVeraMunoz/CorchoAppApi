@@ -520,6 +520,75 @@ class NoteTest extends TestCase
         $response->assertJsonCount(3, 'data');
     }
 
+    public function test_user_cannot_view_note_from_another_community()
+    {
+        $community1 = Community::factory()->create();
+        $community2 = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community1->id]);
+        $otherUser = User::factory()->create(['community_id' => $community2->id]);
+        $note = Note::factory()->create(['user_id' => $otherUser->id]);
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->getJson('/api/notes/' . $note->id);
+
+        $response->assertStatus(404);
+    }
+
+    public function test_user_cannot_complete_other_users_note()
+    {
+        $community = Community::factory()->create();
+        $user1 = User::factory()->create(['community_id' => $community->id]);
+        $user2 = User::factory()->create(['community_id' => $community->id]);
+        $note = Note::factory()->create(['user_id' => $user1->id, 'is_completed' => false]);
+        $token = $user2->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->patchJson('/api/notes/' . $note->id . '/complete');
+
+        $response->assertStatus(403);
+        $this->assertDatabaseHas('notes', ['id' => $note->id, 'is_completed' => false]);
+    }
+
+    public function test_user_cannot_reopen_other_users_note()
+    {
+        $community = Community::factory()->create();
+        $user1 = User::factory()->create(['community_id' => $community->id]);
+        $user2 = User::factory()->create(['community_id' => $community->id]);
+        $note = Note::factory()->create(['user_id' => $user1->id, 'is_completed' => true]);
+        $token = $user2->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->patchJson('/api/notes/' . $note->id . '/reopen');
+
+        $response->assertStatus(403);
+        $this->assertDatabaseHas('notes', ['id' => $note->id, 'is_completed' => true]);
+    }
+
+    public function test_create_note_without_title_returns_validation_error()
+    {
+        $community = Community::factory()->create();
+        $user = User::factory()->create(['community_id' => $community->id]);
+        $category = Category::factory()->create();
+        $token = $user->createToken('auth_token')->accessToken;
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->postJson('/api/notes', [
+            'description' => 'Sin título',
+            'category_id' => $category->id,
+        ]);
+
+        $response->assertStatus(422);
+    }
+
     public function test_authenticated_user_can_filter_notes_by_active_status()
     {
         $community = Community::factory()->create();

@@ -247,6 +247,41 @@ class CommentTest extends TestCase
         ]);
     }
 
+    public function test_unauthenticated_user_cannot_list_comments()
+    {
+        $note = \App\Models\Note::factory()->create();
+
+        $response = $this->getJson('/api/notes/' . $note->id . '/comments');
+
+        $response->assertStatus(401);
+    }
+
+    public function test_authenticated_user_cannot_update_other_users_comment()
+    {
+        $user1 = \App\Models\User::factory()->create();
+        $user2 = \App\Models\User::factory()->create();
+        $note = \App\Models\Note::factory()->create();
+        $token = $user1->createToken('auth_token')->accessToken;
+
+        $comment = Comment::factory()->create([
+            'note_id' => $note->id,
+            'user_id' => $user2->id,
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+            'Accept' => 'application/json',
+        ])->putJson('/api/comments/' . $comment->id, [
+            'content' => 'Intento modificar comentario ajeno',
+        ]);
+
+        $response->assertStatus(403);
+        $this->assertDatabaseMissing('comments', [
+            'id' => $comment->id,
+            'content' => 'Intento modificar comentario ajeno',
+        ]);
+    }
+
     public function test_authenticated_user_cannot_comment_on_completed_note()
     {
         $user = \App\Models\User::factory()->create();

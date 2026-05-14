@@ -101,6 +101,42 @@ class AuthTest extends TestCase
         ]);
     }
 
+    public function test_register_with_invalid_invite_code_returns_422(): void
+    {
+        $data = [
+            'name' => 'Test User',
+            'email' => 'test2@example.com',
+            'password' => 'Password1!',
+            'password_confirmation' => 'Password1!',
+            'invite_code' => 'INVALID-CODE',
+            'floor' => '2',
+            'door' => 'A',
+        ];
+
+        $response = $this->postJson('/api/register', $data);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_register_with_weak_password_returns_422(): void
+    {
+        $community = Community::factory()->create(['invite_code' => 'TEST-9999']);
+
+        $data = [
+            'name' => 'Test User',
+            'email' => 'weak@example.com',
+            'password' => '1234',
+            'password_confirmation' => '1234',
+            'invite_code' => 'TEST-9999',
+            'floor' => '1',
+            'door' => 'B',
+        ];
+
+        $response = $this->postJson('/api/register', $data);
+
+        $response->assertStatus(422);
+    }
+
     public function test_user_can_logout(): void{
         //Arrange
 

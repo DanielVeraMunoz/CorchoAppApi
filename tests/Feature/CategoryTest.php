@@ -20,6 +20,12 @@ use RefreshDatabase;
     //     $response->assertStatus(200);
     // }
 
+    public function test_unauthenticated_user_cannot_get_categories()
+    {
+        $response = $this->getJson('/api/categories');
+        $response->assertStatus(401);
+    }
+
     public function test_user_and_admin_can_get_categories()
     {
         $user = \App\Models\User::factory()->create();
