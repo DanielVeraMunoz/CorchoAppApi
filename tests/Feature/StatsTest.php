@@ -43,6 +43,15 @@ class StatsTest extends TestCase
         ]);
     }
 
+    public function test_unauthenticated_user_cannot_view_stats()
+    {
+        $response = $this->getJson('/api/stats/community');
+        $response->assertStatus(401);
+
+        $response = $this->getJson('/api/stats/top-helpers');
+        $response->assertStatus(401);
+    }
+
     public function test_authenticated_user_can_view_top_helpers()
     {
         $community = \App\Models\Community::factory()->create();
