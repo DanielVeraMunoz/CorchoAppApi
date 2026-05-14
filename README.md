@@ -12,6 +12,7 @@ Built with **Laravel 13** + **Laravel Passport** (OAuth2).
 - [Features](#features)
 - [Data Model](#data-model)
 - [Getting Started](#getting-started)
+- [Running with Docker](#running-with-docker)
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
 - [Roles & Permissions](#roles--permissions)
@@ -109,6 +110,43 @@ php artisan serve
 ```
 
 The API will be available at `http://localhost:8000/api`.
+
+---
+
+## Running with Docker
+
+> **Note:** The `Dockerfile` is committed as `Dockerfile.bak` in this repo. This is intentional — Railway (the deployment platform) auto-detects any file named `Dockerfile` and switches to Docker builder, which breaks the deploy. Renaming it keeps Railway using Railpack while still making Docker available for local development.
+
+To run locally with Docker:
+
+```bash
+# 1. Rename the Dockerfile
+mv Dockerfile.bak Dockerfile
+
+# 2. Build and start containers
+docker compose up --build
+```
+
+On first run, open a second terminal tab and generate the APP_KEY:
+
+```bash
+docker compose exec server php artisan key:generate --show
+```
+
+Copy the result (e.g. `base64:xxxxxxxx=`) and paste it into `compose.yaml` under `APP_KEY`, then restart:
+
+```bash
+docker compose down
+docker compose up
+```
+
+The API will be available at `http://localhost:9000/api`.
+
+Each startup automatically runs `migrate:fresh --seed` and `passport:keys`, so the database is always fresh with seed data.
+
+To stop: `docker compose down`
+
+> **Security:** Never commit a real `APP_KEY` to a public repository. Each person cloning the project should generate their own key with the step above.
 
 ---
 
