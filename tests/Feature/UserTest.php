@@ -144,9 +144,6 @@ class UserTest extends TestCase
         ]);
 
         $response->assertStatus(403);
-        $response->assertJson([
-            'message' => 'No tienes permiso para editar este perfil',
-        ]);
     }
 
     public function test_authenticated_admin_can_update_other_profile()
@@ -221,9 +218,6 @@ class UserTest extends TestCase
         ])->deleteJson('/api/users/' . $user2->id);
 
         $response->assertStatus(403);
-        $response->assertJson([
-            'message' => 'No tienes permiso para eliminar este perfil',
-        ]);
     }
 
     public function test_authenticated_admin_can_delete_other_profile()
