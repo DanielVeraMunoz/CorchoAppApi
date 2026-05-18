@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Http\Resources\NoteResource;
 
 NoteController:
 /**
@@ -34,9 +35,11 @@ class NoteController extends Controller
             'is_completed' => false,
         ]);
 
+        $note->load(['user', 'category']);
+
         return response()->json([
             'message' => 'Nota creada correctamente',
-            'data' => $note,
+            'data' => new NoteResource($note),
         ], 201);
     }
 
@@ -66,7 +69,7 @@ class NoteController extends Controller
 
         return response()->json([
             'message' => 'Notas obtenidas correctamente',
-            'data' => $notes,
+            'data' => NoteResource::collection($notes),
         ], 200);
     }
 
@@ -95,7 +98,7 @@ class NoteController extends Controller
 
         return response()->json([
             'message' => 'Nota obtenida correctamente',
-            'data' => $note,
+            'data' => new NoteResource($note),
         ], 200);
     }
 
@@ -136,7 +139,7 @@ class NoteController extends Controller
 
         return response()->json([
             'message' => 'Nota actualizada correctamente',
-            'data' => $note,
+            'data' => new NoteResource($note),
         ], 200);
     }
 
@@ -211,7 +214,7 @@ class NoteController extends Controller
 
         return response()->json([
             'message' => 'Nota marcada como completada',
-            'data' => $note,
+            'data' => new NoteResource($note),
         ], 200);
     }
 
@@ -248,7 +251,7 @@ class NoteController extends Controller
 
         return response()->json([
             'message' => 'Nota reabierta correctamente',
-            'data' => $note,
+            'data' => new NoteResource($note),
         ], 200);
     }
 }
