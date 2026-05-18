@@ -76,14 +76,7 @@ class UserController extends Controller
             );
         }
 
-        if ($user->id != $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No tienes permiso para editar este perfil'
-                ],
-                403
-            );
-        }
+        $this->authorize('update', $user);
 
         $data = $request->only(['name', 'email', 'floor', 'door']);
 
@@ -121,14 +114,7 @@ class UserController extends Controller
             );
         }
 
-        if ($user->id != $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No tienes permiso para eliminar este perfil'
-                ],
-                403
-            );
-        }
+        $this->authorize('delete', $user);
 
         $user->delete();
 
