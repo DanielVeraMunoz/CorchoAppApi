@@ -8,6 +8,7 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserResource;
 
 AuthController:
 /**
@@ -43,7 +44,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Usuario registrado correctamente',
-            'data' => $user,
+            'data' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer',
         ], 201);
@@ -75,7 +76,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Login correcto',
-            'data' => $user,
+            'data' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer',
         ], 200);

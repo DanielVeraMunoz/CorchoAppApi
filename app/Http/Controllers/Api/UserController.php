@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 UserController:
 /**
@@ -25,7 +26,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Usuarios obtenidos correctamente',
-            'data' => $users,
+            'data' => UserResource::collection($users),
         ], 200);
     }
 
@@ -52,7 +53,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Usuario obtenido correctamente',
-            'data' => $user,
+            'data' => new UserResource($user),
         ], 200);
     }
 
@@ -96,7 +97,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Usuario actualizado correctamente',
-            'data' => $user,
+            'data' => new UserResource($user),
         ], 200);
     }
 
