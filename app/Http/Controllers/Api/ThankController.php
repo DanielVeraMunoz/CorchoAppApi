@@ -109,11 +109,7 @@ class ThankController extends Controller
             ], 404);
         }
 
-        if ($thank->giver_id !== $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json([
-                'message' => 'No tienes permiso para eliminar esta gracias',
-            ], 403);
-        }
+        $this->authorize('delete', $thank);
 
         $thank->delete();
 
