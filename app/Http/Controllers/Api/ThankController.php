@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\ThankResource;
 
 ThankController:
 /**
@@ -71,7 +72,7 @@ class ThankController extends Controller
 
         return response()->json([
             'message' => 'Gracias por tu aporte!',
-            'data' => $thank,
+            'data' => new ThankResource($thank),
         ], 201);
     }
 
@@ -88,7 +89,7 @@ class ThankController extends Controller
 
         return response()->json([
             'message' => 'Gracias obtenidas correctamente',
-            'data' => $thanks,
+            'data' => ThankResource::collection($thanks),
         ], 200);
     }
 
