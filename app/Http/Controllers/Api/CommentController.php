@@ -89,14 +89,7 @@ class CommentController extends Controller
             );
         }
 
-        if ($comment->user_id != $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No tienes permiso para editar este comentario'
-                ],
-                403
-            );
-        }
+        $this->authorize('update', $comment);
 
         $comment->update([
             'content' => $request->content,
@@ -127,14 +120,7 @@ class CommentController extends Controller
             );
         }
 
-        if ($comment->user_id != $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No tienes permiso para editar este comentario'
-                ],
-                403
-            );
-        }
+        $this->authorize('delete', $comment);
 
         $comment->delete();
 
