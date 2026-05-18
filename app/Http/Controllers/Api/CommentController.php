@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Http\Resources\CommentResource;
 
 CommentController:
 /**
@@ -49,7 +50,7 @@ class CommentController extends Controller
         return response()->json([
             $comment->load('user'),
             'message' => 'Comentario creado correctamente',
-            'data' => $comment,
+            'data' => new CommentResource($comment),
         ], 201);
     }
 
@@ -103,7 +104,7 @@ class CommentController extends Controller
 
         return response()->json([
             'message' => 'Comentario actualizado correctamente',
-            'data' => $comment,
+            'data' => new CommentResource($comment),
         ], 200);
     }
 
