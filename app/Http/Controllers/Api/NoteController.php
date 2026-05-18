@@ -124,14 +124,7 @@ class NoteController extends Controller
             );
         }
 
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No autorizado'
-                ],
-                403
-            );
-        }
+        $this->authorize('update', $note);
 
         $note->update($request->only(['title', 'description', 'category_id', 'event_date']));
 
@@ -163,14 +156,7 @@ class NoteController extends Controller
             );
         }
 
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No autorizado'
-                ],
-                403
-            );
-        }
+        $this->authorize('delete', $note);
 
         $note->delete();
 
@@ -199,14 +185,7 @@ class NoteController extends Controller
             );
         }
 
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No autorizado'
-                ],
-                403
-            );
-        }
+        $this->authorize('complete', $note);
 
         $note->update(['is_completed' => true]);
 
@@ -236,14 +215,8 @@ class NoteController extends Controller
                 404
             );
         }
-        if ($note->user_id !== $request->user()->id && $request->user()->role !== 'admin') {
-            return response()->json(
-                [
-                    'message' => 'No autorizado'
-                ],
-                403
-            );
-        }
+        
+        $this->authorize('reopen', $note);
 
         $note->update(['is_completed' => false]);
 
